@@ -49,13 +49,13 @@ use Cake\Utility\Security;
  * You should copy `config/.env.default to `config/.env` and set/modify the
  * variables as required.
  */
-// if (!env('APP_NAME') && file_exists(CONFIG . '.env')) {
-//     $dotenv = new \josegonzalez\Dotenv\Loader([CONFIG . '.env']);
-//     $dotenv->parse()
-//         ->putenv()
-//         ->toEnv()
-//         ->toServer();
-// }
+if (!env('APP_NAME') && file_exists(CONFIG . '.env')) {
+    $dotenv = new \josegonzalez\Dotenv\Loader([CONFIG . '.env']);
+    $dotenv->parse()
+        ->putenv()
+        ->toEnv()
+        ->toServer();
+}
 
 /*
  * Read configuration file and inject configuration into various
@@ -68,6 +68,18 @@ use Cake\Utility\Security;
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
+    
+    // Load for each environment.
+    $env = getenv('FUEL_ENV');
+    if (!$env) {
+        $env = 'development';
+    }
+
+    if ($env == 'production') {
+        Configure::load('production/app', 'default', true);
+    } else {
+        Configure::load('development/app', 'default', true);
+    }
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }
@@ -197,3 +209,35 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
+/*
+ * Custom
+ */
+include_once ('apiurl.php');
+
+Configure::write('default_avatar', 'avatar_default.png');
+Configure::write('Config.PageSize', 10);
+Configure::write('Config.searchPageSize', array(
+    10 => 10,
+    20 => 20,
+    50 => 50,
+    80 => 80,
+    100 => 100,
+));
+Configure::write('Config.searchStatus', array(
+    0 => __('LABEL_ACTIVE'),
+    1 => __('LABEL_INACTIVE'),
+));
+
+if ($env == 'production') {
+    define('VERSION_DATE', date('Ymd'));
+    include_once ('production/bootstrap.php');
+} else {
+    define('VERSION_DATE', date('YmdHis'));
+    include_once ('development/bootstrap.php');
+}
+
+define('DEFAULT_SITE_TITLE', 'ChoTreo Admin');
+if (!defined('USE_SUB_DIRECTORY')) {
+    define('USE_SUB_DIRECTORY', '');
+}

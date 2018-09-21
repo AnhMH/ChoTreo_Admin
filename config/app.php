@@ -42,7 +42,7 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'vi_VN'),
         'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
         'base' => false,
         'dir' => 'src',
@@ -382,5 +382,7 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        'cookie' => 'ChoTreoCookies',
+        'timeout' => 24*60, // 1day
     ],
 ];
