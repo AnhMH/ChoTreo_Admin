@@ -22,23 +22,6 @@ class Api {
     public static $errors = array();
 
     /**
-     * Get api Url
-     *       
-     * @author thailvn
-     * @param string $url     
-     * @return string URL    
-     */
-    public static function getUrl($url) {
-        foreach (Configure::read('API.rewriteUrl') as $pattern => $replace) {
-            preg_match($pattern, $url, $matches);
-            if ($matches) {
-                return $replace;
-            }
-        }
-        return $url;
-    }
-
-    /**
      * Call API
      *   
      * @author thailvn
@@ -49,14 +32,14 @@ class Api {
      * @return object API response  
      */
     public static function call($url, $requestData = array(), $json = false, $defaultResult = false) {
-        $url = Configure::read('API.Host') . static::getUrl($url);
+        $url = Configure::read('API.Host') . $url;
         try {
             AppLog::info("START API: {$url}", __METHOD__, $requestData);
             $ch = curl_init();
             $headers = array("Content-Type:multipart/form-data");
+            $session = Router::getRequest(true)->session();
+            $auth = $session->read('Auth');
             if (!isset($requestData['unauthorize'])) {
-                $session = Router::getRequest(true)->session();
-                $auth = $session->read('Auth');
                 if (!empty($auth['User']['token'])) {
                     $headers[] = "User-Id:" . $auth['User']['id'];
                     $headers[] = "Authorization:" . $auth['User']['token'];
@@ -75,6 +58,7 @@ class Api {
                 }
             }
             $posts['from_admin'] = 1;
+            $posts['admin_id'] = !empty($auth['User']['id']) ? $auth['User']['id'] : '';
             $posts['api_auth_date'] = strtotime(gmdate("M d Y H:i:s", strtotime(date('Y/m/d H:i:s'))));
             $posts['api_auth_key'] = hash('md5', Configure::read('API.secretKey') . $posts['api_auth_date']);
             $options = array(
