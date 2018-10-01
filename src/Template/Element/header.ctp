@@ -32,7 +32,7 @@
                             $AppUI['name'] : ''; ?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="account"><i class="fa fa-user"></i>Tài khoản</a></li>
-                        <li><a href="authentication/logout"><i class="fa fa-power-off"></i>Thoát</a></li>
+                        <li><a href="<?php echo $BASE_URL;?>/logout"><i class="fa fa-power-off"></i>Thoát</a></li>
                     </ul>
                 </li>
             </ul>

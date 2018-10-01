@@ -60,6 +60,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     //$routes->connect('/login/*', ['controller' => 'Login', 'action' => 'index']);
 
     $routes->connect('/', ['controller' => 'Top', 'action' => 'index']);
+    $routes->connect('/logout', ['controller' => 'Login', 'action' => 'logout']);
     /**
      * Connect catchall routes for all controllers.
      *

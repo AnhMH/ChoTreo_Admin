@@ -95,7 +95,7 @@ $(document).ready(function () {
         initBasic();
     }
 
-    if (window.location.pathname.indexOf('customer') !== -1) {
+    if (window.location.pathname.indexOf('customers') !== -1) {
         $('li#customer').addClass('active');
         $('#customer_birthday').datetimepicker({
             timepicker: false,
@@ -336,6 +336,9 @@ function cms_del_pro_order() {
  /*********************************************************************/
 function cms_adapter_ajax($param) {
     $.ajax({
+        headers: {
+            'X-CSRF-Token': _csrfToken
+        },
         url: $param.url,
         type: $param.type,
         data: $param.data,
@@ -1637,7 +1640,7 @@ function cms_paging_listcustomer($page) {
     $data = {'data': {'option': $option, 'keyword': $keyword}};
     var $param = {
         'type': 'POST',
-        'url': 'customer/cms_paging_listcustomer/' + $page,
+        'url': BASE_URL + '/ajax/getlistcustomer/' + $page,
         'data': $data,
         'callback': function (data) {
             $('.cus-body').html(data);

@@ -14,6 +14,13 @@
         <link href="<?php echo $BASE_URL; ?>/css/style.css?<?php echo VERSION_DATE;?>" rel="stylesheet">
         <link href="<?php echo $BASE_URL; ?>/css/jquery-ui.min.css" rel="stylesheet">
         <link href="<?php echo $BASE_URL; ?>/css/jquery.datetimepicker.css" rel="stylesheet">
+        
+        <script>
+            var BASE_URL = '<?php echo $BASE_URL; ?>';
+            var controller = '<?php echo $controller; ?>';
+            var action = '<?php echo $action; ?>';
+            var _csrfToken = '<?php echo $this->request->getParam('_csrfToken');?>';
+        </script>
     </head>
     <body>
         <header>
@@ -41,5 +48,5 @@
     <script src="<?php echo $BASE_URL; ?>/js/bootstrap-datepicker.vi.min.js"></script>
     <script src="<?php echo $BASE_URL; ?>/js/ckeditor.js"></script>
     <script src="<?php echo $BASE_URL; ?>/js/editor.js"></script>
-    <script src="<?php echo $BASE_URL; ?>/js/ajax.js"></script>
+    <script src="<?php echo $BASE_URL; ?>/js/ajax.js?<?php echo VERSION_DATE;?>"></script>
 </html>

@@ -27,8 +27,8 @@ class PaginateHelper extends AppHelper {
      * @param string $url If empty then get current url     
      * @return string Paging html 
      */
-    function render($total = 0, $limit = 0, $displayPage = 10, $url = '') {
-        $page = !empty($this->request->query['page']) ? $this->request->query['page'] : 1;
+    function render($total = 0, $limit = 0, $function = '', $sPage = 1, $displayPage = 10, $url = '') {
+        $page = !empty($this->request->query['page']) ? $this->request->query['page'] : $sPage;
         if (empty($url)) {
             $param = array();
             foreach ($this->request->query as $name => $value) {
@@ -67,26 +67,34 @@ class PaginateHelper extends AppHelper {
             $end = $totalPage;
         }
         $html = '<div class="dataTables_paginate paging_bootstrap">';
-        if ($total > $limit) {
-            $sumary = sprintf(__('LABEL_PAGING_SUMARY'), ($page - 1) * $limit + 1, min($page * $limit, $total), $total);
-            $html .= "<div class=\"paging_sumary\">{$sumary}</div>";
-        }
         $html .='<ul class="pagination">';
         if ($end > 1) {
             for ($i = $start; $i <= $end; $i++) {
                 if ($i == $page) {
                     $nav .= "<li class=\"active\"><a href=\"#\">{$i}</a></li>";
                 } else {
-                    $nav .= "<li><a href='" . $url . "page={$i}'>{$i}</a></li>";
+                    if (!empty($function)) {
+                        $nav .= "<li><a onclick='".$function."({$i})'>{$i}</a></li>";
+                    } else {
+                        $nav .= "<li><a href='" . $url . "page={$i}'>{$i}</a></li>";
+                    }
                 }
             }
             if ($page > 1) {
-                $prev = "<li class=\"prev\"><a href='" . $url . "page=" . ($page - 1) . "'>← </a></li>";
+                if (!empty($function)) {
+                    $prev = "<li class=\"prev\"><a onclick='".$function."(".($page - 1).")'>← </a></li>";
+                } else {
+                    $prev = "<li class=\"prev\"><a href='" . $url . "page=" . ($page - 1) . "'>← </a></li>";
+                }
             } else {
                 $prev = "";
             }
             if ($page < $totalPage) {
-                $next = "<li class=\"next\"><a href='" . $url . "page=" . ($page + 1) . "'> →</a></li>";
+                if (!empty($function)) {
+                    $next = "<li class=\"next\"><a onclick='".$function."(".($page + 1).")'> →</a></li>";
+                } else {
+                    $next = "<li class=\"next\"><a href='" . $url . "page=" . ($page + 1) . "'> →</a></li>";
+                }
             } else {
                 $next = "";
             }

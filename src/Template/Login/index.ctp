@@ -20,11 +20,8 @@
                            value="<?php echo !empty($data['password']) ? $data['password'] : ''; ?>"
                            class="form-control" id="inputPassword3" placeholder="<?php echo __('LABEL_PASSWORD');?>">
                     <i class="fa fa-lock icon-right"></i>
-<!--                    <span>user: admin - pass: 12345678</span>-->
                 </div>
-
                 <div class="form-group">
-
                     <input type="submit" name="login" value="<?php echo __('LABEL_LOGIN');?>" class="btn btn-primary btn-sm"/>
                 </div>
             </form>
