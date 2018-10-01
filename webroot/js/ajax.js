@@ -1,3 +1,4 @@
+var ajaxAlertDelay = 3000;
 $(document).ready(function () {
     "use strict";
 
@@ -902,20 +903,18 @@ function cms_crCustomer() {
             }
         }
         var $data = {
-            'data': {
-                'customer_code': $code,
-                'customer_name': $name,
-                'customer_phone': $phone,
-                'customer_email': $mail,
-                'customer_addr': $address,
-                'notes': $notes,
-                'customer_birthday': $birthday,
-                'customer_gender': $gender
-            }
+            'code': $code,
+            'name': $name,
+            'phone': $phone,
+            'email': $mail,
+            'address': $address,
+            'notes': $notes,
+            'birthday': $birthday,
+            'gender': $gender
         };
         var $param = {
             'type': 'POST',
-            'url': 'customer/cms_crcustomer',
+            'url': BASE_URL + '/ajax/customercreate',
             'data': $data,
             'callback': function (data) {
                 if (data > 0) {
@@ -928,7 +927,7 @@ function cms_crCustomer() {
                     cms_reset_valCustomer();
                 }
                 else {
-                    $('.ajax-error-ct').html('Mã khách hàng đã tồn tại, Vui lòng chọn mã khác').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html('Mã khách hàng đã tồn tại, Vui lòng chọn mã khác').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
@@ -942,13 +941,13 @@ function cms_delCustomer($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'customer/cms_delCustomer',
+            'url': BASE_URL + '/ajax/customerdel',
             'data': {'id': $id},
             'callback': function (data) {
                 if (data == '0') {
-                    $('.ajax-error-ct').html('Lỗi! không thể xóa Khách hàng').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html('Lỗi! không thể xóa Khách hàng').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 } else {
-                    $('.ajax-success-ct').html('Bạn đã xóa khách hàng thành công!').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-success-ct').html('Bạn đã xóa khách hàng thành công!').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                     cms_paging_listcustomer($page);
                 }
             }
@@ -986,23 +985,22 @@ function cms_save_edit_customer() {
             }
         }
         var $data = {
-            'data': {
-                'customer_name': $name,
-                'customer_phone': $phone,
-                'customer_email': $mail,
-                'customer_addr': $address,
-                'notes': $notes,
-                'customer_birthday': $birthday,
-                'customer_gender': $gender
-            }
+            'id' : $id,
+            'name': $name,
+            'phone': $phone,
+            'email': $mail,
+            'address': $address,
+            'notes': $notes,
+            'birthday': $birthday,
+            'gender': $gender
         };
         var $param = {
             'type': 'POST',
-            'url': 'customer/cms_save_edit_customer/' + $id,
+            'url': BASE_URL + '/ajax/customercreate',
             'data': $data,
             'callback': function (data) {
-                if (data == '1') {
-                    $('.ajax-success-ct').html('Bạn đã cập nhật khách hàng thành công!').parent().fadeIn().delay(1000).fadeOut('slow');
+                if (data > 0) {
+                    $('.ajax-success-ct').html('Bạn đã cập nhật khách hàng thành công!').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                     cms_reset_valCustomer();
                     cms_detail_after_edit($id);
                 }
@@ -1015,7 +1013,7 @@ function cms_save_edit_customer() {
 function cms_detail_after_edit($id) {
     var $param = {
         'type': 'POST',
-        'url': 'customer/cms_detail_itemcust/' + $id,
+        'url': BASE_URL + '/ajax/customerdetail/' + $id,
         'data': null,
         'callback': function (data) {
             $('.customer-supplier').html(data);
@@ -1213,7 +1211,7 @@ function cms_detail_customer($id) {
     'use strict';
     var $param = {
         'type': 'POST',
-        'url': 'customer/cms_detail_customer/' + $id,
+        'url': BASE_URL + '/ajax/customerdetail/' + $id,
         'data': null,
         'callback': function (data) {
             $('.customer-supplier').html(data);

@@ -5,7 +5,8 @@ use Cake\Core\Configure;
 // Init param
 $limit = Configure::read('Config.PageSize');
 $param = array(
-    'limit' => $limit
+    'limit' => $limit,
+    'page' => $page
 );
 $postParam = $this->request->data();
 if (!empty($postParam['data'])) {
