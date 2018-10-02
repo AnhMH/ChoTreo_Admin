@@ -9,9 +9,9 @@ $(document).ready(function () {
     if (window.location.pathname.indexOf('products') !== -1) {
         $('li#product').addClass('active');
         cms_product_search();
-//        cms_load_listgroup();
-//        cms_paging_manufacture(1);
-//        cms_paging_group(1);
+        cms_load_listgroup();
+        cms_paging_manufacture(1);
+        cms_paging_group(1);
         cms_loadListproOption();
         cms_paging_product(1);
     }
@@ -1272,7 +1272,7 @@ function cms_save_edit_sup() {
 function cms_vcrproduct() {
     var $param = {
         'type': 'POST',
-        'url': 'product/cms_vcrproduct',
+        'url': BASE_URL + '/ajax/productcreate',
         'data': null,
         'callback': function (data) {
             $('.products').html(data);
@@ -1530,43 +1530,42 @@ function cms_add_product(type) {
         $('.ajax-error-ct').html('Vui lòng nhập tên sản phẩm.').parent().fadeIn().delay(1000).fadeOut('slow');
     } else {
         var $data = {
-            'data': {
-                'prd_name': $name,
-                'prd_code': $code,
-                'prd_sls': $sls,
-                'prd_inventory': $inventory,
-                'prd_allownegative': $allownegative,
-                'prd_origin_price': $origin_price,
-                'prd_sell_price': $sell_price,
-                'prd_group_id': $group_id,
-                'prd_manufacture_id': $manufacture_id,
-                'prd_vat': $vat,
-                'prd_image_url': $img_url,
-                'prd_descriptions': $description,
-                'display_website': $display_wb,
-                'prd_new': $new,
-                'prd_hot': $hot,
-                'prd_highlight': $highlight
-            }
+            'name': $name,
+            'code': $code,
+            'qty': $sls,
+            'is_inventory': $inventory,
+            'is_allow_negative': $allownegative,
+            'origin_price': $origin_price,
+            'sell_price': $sell_price,
+            'cate_id': $group_id,
+            'manufacture_id': $manufacture_id,
+//            'prd_vat': $vat,
+            'image': $img_url,
+            'description': $description,
+            'is_display_web': $display_wb,
+            'is_new': $new,
+            'is_hot': $hot,
+            'is_feature': $highlight,
+            'add_update' : 1
         };
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_add_product/' + $store_id,
+            'url': BASE_URL + '/ajax/productcreate/' + $store_id,
             'data': $data,
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     if (type == 'save') {
-                        $('.ajax-success-ct').html('Tạo sản phẩm ' + $name + ' thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                        $('.ajax-success-ct').html('Tạo sản phẩm ' + $name + ' thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                         setTimeout(function () {
                             $('.btn-back').trigger('click');
                         }, 2000);
                     } else {
-                        $('.ajax-success-ct').html('Tạo sản phẩm ' + $name + ' thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                        $('.ajax-success-ct').html('Tạo sản phẩm ' + $name + ' thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                         $('.products').find('input:text').val('');
                         $('.products').find('input:checkbox').prop('checked', false);
                     }
                 } else {
-                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
@@ -1868,7 +1867,7 @@ function cms_clone_product($id) {
 function cms_edit_product($id) {
     var $param = {
         'type': 'POST',
-        'url': 'product/cms_edit_product/' + $id,
+        'url': BASE_URL + '/ajax/productdetail/' + $id,
         'data': null,
         'callback': function (data) {
             $('.products').html(data);
