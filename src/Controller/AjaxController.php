@@ -44,4 +44,34 @@ class AjaxController extends AppController {
         $this->autoRender = false;
         include ('Bus/Ajax/customerdel.php');
     }
+    
+    /**
+     * Supplier list
+     */
+    public function supplierlist($page) {
+        include ('Bus/Ajax/supplierlist.php');
+    }
+    
+    /**
+     * Supplier create
+     */
+    public function suppliercreate() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/suppliercreate.php');
+    }
+    
+    /**
+     * Supplier delete
+     */
+    public function supplierdel() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/supplierdel.php');
+    }
+    
+    /**
+     * Supplier detail
+     */
+    public function supplierdetail($id) {
+        include ('Bus/Ajax/supplierdetail.php');
+    }
 }

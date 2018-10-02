@@ -1043,31 +1043,29 @@ function cms_crsup() {
             }
         }
         var $data = {
-            'data': {
-                'supplier_code': $code,
-                'supplier_name': $name,
-                'supplier_phone': $phone,
-                'supplier_email': $mail,
-                'supplier_addr': $addr,
-                'tax_code': $tax_code,
+                'code': $code,
+                'name': $name,
+                'phone': $phone,
+                'email': $mail,
+                'address': $addr,
+//                'tax_code': $tax_code,
                 'notes': $notes
-            }
         };
         var $param = {
             'type': 'POST',
-            'url': 'supplier/cms_crsup',
+            'url': BASE_URL + '/ajax/suppliercreate',
             'data': $data,
             'callback': function (data) {
                 if (data > 0) {
                     $('.btn-close').trigger('click');
                     $('.ajax-error-ct').hide();
-                    $('.ajax-success-ct').html('Bạn đã tạo mới nhà cung cấp thành công!').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-success-ct').html('Bạn đã tạo mới nhà cung cấp thành công!').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                     cms_paging_supplier(1);
                     cms_reset_valSupplier();
                     $("#search-box-mas").prop('readonly', true).attr('data-id', data).val($name);
                     $(".del-mas").html('<i class="fa fa-minus-circle" aria-hidden="true"></i>');
                 } else {
-                    $('.ajax-error-ct').html('Lỗi hệ thống.').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html('Lỗi hệ thống.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
@@ -1161,10 +1159,10 @@ function cms_print_input_in_create($id_template, $id_input) {
 function cms_paging_supplier($page) {
     $keyword = $('.txt-ssupplier').val();
     $option = $('#sup-option').val();
-    $data = {'data': {'option': $option, 'keyword': $keyword}};
+    $data = {'option': $option, 'keyword': $keyword};
     var $param = {
         'type': 'POST',
-        'url': 'supplier/cms_paging_supplier/' + $page,
+        'url': BASE_URL + '/ajax/supplierlist/' + $page,
         'data': $data,
         'callback': function (data) {
             $('.sup-body').html(data);
@@ -1179,13 +1177,13 @@ function cms_delsup($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'supplier/cms_delsup',
+            'url': BASE_URL + '/ajax/supplierdel',
             'data': {'id': $id},
             'callback': function (data) {
                 if (data == '0') {
-                    $('.ajax-error-ct').html('Lỗi! không thể xóa nhà cung cấp này').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html('Lỗi! không thể xóa nhà cung cấp này').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 } else {
-                    $('.ajax-success-ct').html('Bạn đã xóa nhà cung cấp thành công!').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-success-ct').html('Bạn đã xóa nhà cung cấp thành công!').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                     cms_paging_supplier($page);
                 }
             }
@@ -1198,7 +1196,7 @@ function cms_detail_supplier($id) {
     'use strict';
     var $param = {
         'type': 'POST',
-        'url': 'supplier/cms_detail_supplier/' + $id,
+        'url': BASE_URL + '/ajax/supplierdetail/' + $id,
         'data': null,
         'callback': function (data) {
             $('.customer-supplier').html(data);
@@ -1228,7 +1226,7 @@ function cms_save_edit_sup() {
     var $phone = $.trim($('.customer-supplier #supplier_phone').val());
     var $mail = $.trim($('.customer-supplier #supplier_email').val());
     var $address = $('.customer-supplier #supplier_addr').val();
-    var $tax_code = $('.customer-supplier #tax_code').val();
+//    var $tax_code = $('.customer-supplier #tax_code').val();
     var $notes = $('.customer-supplier #notes').val();
 
     if ($name.length == 0) {
@@ -1244,23 +1242,24 @@ function cms_save_edit_sup() {
             }
         }
         var $data = {
-            'data': {
-                'supplier_name': $name,
-                'supplier_phone': $phone,
-                'supplier_email': $mail,
-                'supplier_addr': $address,
-                'notes': $notes,
-                'tax_code': $tax_code
-            }
+            'id' : $id,
+            'name': $name,
+            'phone': $phone,
+            'email': $mail,
+            'address': $address,
+            'notes': $notes,
+//                'tax_code': $tax_code
         };
         var $param = {
             'type': 'POST',
-            'url': 'supplier/cms_save_edit_sup/' + $id,
+            'url': BASE_URL + '/ajax/suppliercreate',
             'data': $data,
             'callback': function (data) {
-                if (data == '1') {
-                    $('.ajax-success-ct').html('Bạn đã cập nhật nhà cung cấp thành công!').parent().fadeIn().delay(1000).fadeOut('slow');
+                if (data > 0) {
+                    $('.ajax-success-ct').html('Bạn đã cập nhật nhà cung cấp thành công!').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                     cms_detail_supplier($id);
+                } else {
+                    $('.ajax-error-ct').html('Lỗi! Cập nhật không thành công').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
