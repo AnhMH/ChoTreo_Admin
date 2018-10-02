@@ -9,9 +9,9 @@ $(document).ready(function () {
     if (window.location.pathname.indexOf('products') !== -1) {
         $('li#product').addClass('active');
         cms_product_search();
-        cms_load_listgroup();
-        cms_paging_manufacture(1);
-        cms_paging_group(1);
+//        cms_load_listgroup();
+//        cms_paging_manufacture(1);
+//        cms_paging_group(1);
         cms_loadListproOption();
         cms_paging_product(1);
     }
@@ -1818,7 +1818,7 @@ function cms_deactivate_product_bydetail($id) {
 function cms_detail_product($id) {
     var $param = {
         'type': 'POST',
-        'url': 'product/cms_detail_product/' + $id,
+        'url': BASE_URL + '/ajax/productdetail/' + $id,
         'data': null,
         'callback': function (data) {
             $('.products').html(data);

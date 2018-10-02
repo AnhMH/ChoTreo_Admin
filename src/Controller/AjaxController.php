@@ -81,4 +81,11 @@ class AjaxController extends AppController {
     public function productlist($page) {
         include ('Bus/Ajax/productlist.php');
     }
+    
+    /**
+     * Product detail
+     */
+    public function productdetail($id) {
+        include ('Bus/Ajax/productdetail.php');
+    }
 }
