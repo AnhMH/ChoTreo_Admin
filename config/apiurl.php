@@ -16,6 +16,11 @@ Configure::write('API.url_suppliers_addupdate', 'suppliers/addupdate');
 Configure::write('API.url_suppliers_detail', 'suppliers/detail');
 Configure::write('API.url_suppliers_delete', 'suppliers/delete');
 
+Configure::write('API.url_products_list', 'products/list');
+Configure::write('API.url_products_addupdate', 'products/addupdate');
+Configure::write('API.url_products_detail', 'products/detail');
+Configure::write('API.url_products_delete', 'products/delete');
+
 Configure::write('API.url_customers_list', 'customers/list');
 Configure::write('API.url_customers_addupdate', 'customers/addupdate');
 Configure::write('API.url_customers_detail', 'customers/detail');

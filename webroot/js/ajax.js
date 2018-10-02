@@ -6,7 +6,7 @@ $(document).ready(function () {
         $('li#dashboard').addClass('active');
     }
 
-    if (window.location.pathname.indexOf('product') !== -1) {
+    if (window.location.pathname.indexOf('products') !== -1) {
         $('li#product').addClass('active');
         cms_product_search();
         cms_load_listgroup();
@@ -2592,10 +2592,15 @@ function cms_paging_product($page) {
     $option1 = $('#search-option-1').val();
     $option2 = $('#prd_group_id').val();
     $option3 = $('#prd_manufacture_id').val();
-    $data = {'data': {'option1': $option1, 'option2': $option2, 'option3': $option3, 'keyword': $keyword}};
+    $data = {
+        'option1': $option1, 
+        'option2': $option2, 
+        'option3': $option3, 
+        'keyword': $keyword
+    };
     var $param = {
         'type': 'POST',
-        'url': 'product/cms_paging_product/' + $page,
+        'url': BASE_URL + '/ajax/productlist/' + $page,
         'data': $data,
         'callback': function (data) {
             $('.product-main-body').html(data);
