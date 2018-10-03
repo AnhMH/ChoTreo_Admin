@@ -95,4 +95,12 @@ class AjaxController extends AppController {
     public function productcreate($id = '') {
         include ('Bus/Ajax/productcreate.php');
     }
+    
+    /**
+     * Product disable
+     */
+    public function productdisable() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/productdisable.php');
+    }
 }

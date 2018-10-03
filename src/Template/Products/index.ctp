@@ -36,7 +36,6 @@
                         <select class="form-control" id="search-option-1">
                             <option value="0">Đang kinh doanh</option>
                             <option value="1">Đã ngừng kinh doanh</option>
-                            <option value="2">Đã xóa</option>
                         </select>
                     </div>
                     <div class="col-md-3 padd-0" style="margin-right: 10px;">

@@ -10,10 +10,18 @@
                 <div class="col-md-6">
                     <div class="right-action text-right">
                         <div class="btn-groups">
-                            <button type="button" class="btn btn-primary" style="background-color: #8B8B8B;"
+                            <?php if (!empty($product['disable'])): ?>
+                            <button type="button" class="btn btn-success"
+                                    onclick="cms_restore_product_deactivated_bydetail(<?php echo $product['id']; ?>)"><i
+                                    class="fa fa-repeat"></i> Khôi phục
+                            </button>
+                            <?php else: ?>
+                            <button type="button" class="btn btn-danger" style="background-color: #8B8B8B;"
                                     onclick="cms_deactivate_product_bydetail(<?php echo $product['id']; ?>)"><i
                                     class="fa fa-pause"></i> Ngừng KD
                             </button>
+                            <?php endif; ?>
+                            
                             <button type="button" class="btn btn-primary " onclick="cms_edit_product(<?php echo $product['id']; ?>)"><i
                                     class="fa fa-pencil-square-o"></i> Sửa
                             </button>

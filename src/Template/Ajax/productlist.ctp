@@ -49,8 +49,8 @@
                     <i title="Copy" onclick="cms_clone_product(<?php echo $item['id']; ?>);" class="fa fa-files-o blue"
                        style="margin-right: 5px;"></i>
                     <?php
-                    if (isset($data['option'])){
-                        if ($data['option'] == 1){
+                    if (isset($param['disable'])){
+                        if ($param['disable'] == 1){
                         ?>
                         <i title="Khôi phục" class="fa fa-repeat"
                            onclick="cms_restore_product_deactivated(<?php echo $item['id'].','.$page; ?>);"
@@ -58,12 +58,6 @@
                         <i class="fa fa-trash-o" style="color: darkred;" title="Xóa"
                            onclick="cms_delete_product(<?php echo $item['id'].','.$page; ?>)"></i>
                         <?php
-                        } elseif ($data['option'] == 2) {
-                            ?>
-                                <i title="Khôi phục" class="fa fa-repeat"
-                                   onclick="cms_restore_product_deleted(<?php echo $item['id'].','.$page; ?>);"
-                                   style="margin-right: 5px; color: #C6699F; cursor: pointer;"></i>
-                            <?php
                         } else {
                             ?>
                                 <i title="Ngừng kinh doanh" class="fa fa-pause"

@@ -1771,10 +1771,13 @@ function cms_restore_product_deactivated_bydetail($id) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_restore_product_deactivated/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/productdisable',
+            'data': {
+                'id' : $id,
+                'disable' : 0
+            },
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     $('.ajax-success-ct').html('Khôi phục sản phẩm thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                     setTimeout(function () {
                         cms_javascript_redirect(cms_javascrip_fullURL());
@@ -1793,10 +1796,13 @@ function cms_restore_product_deactivated($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_restore_product_deactivated/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/productdisable',
+            'data': {
+                'id' : $id,
+                'disable' : 0
+            },
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     $('.ajax-success-ct').html('Khôi phục sản phẩm thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                     cms_paging_product($page);
                 } else if (data == '0') {
@@ -1813,14 +1819,17 @@ function cms_deactivate_product($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_deactivate_product/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/productdisable/',
+            'data': {
+                'id' : $id,
+                'disable' : 1
+            },
             'callback': function (data) {
-                if (data == '1') {
-                    $('.ajax-success-ct').html('Ngừng kinh doanh sản phẩm thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                if (data > 0) {
+                    $('.ajax-success-ct').html('Ngừng kinh doanh sản phẩm thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                     cms_paging_product($page);
                 } else if (data == '0') {
-                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
@@ -1834,10 +1843,13 @@ function cms_deactivate_product_bydetail($id) {
         var $name = $('td.prd_name').text();
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_deactivate_product/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/productdisable/',
+            'data': {
+                'id' : $id,
+                'disable' : 1
+            },
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     $('.ajax-success-ct').html('Ngừng kinh doanh sản phẩm thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                     setTimeout(function () {
                         cms_javascript_redirect(cms_javascrip_fullURL());
@@ -2629,7 +2641,7 @@ function cms_paging_product($page) {
     $option2 = $('#prd_group_id').val();
     $option3 = $('#prd_manufacture_id').val();
     $data = {
-        'option1': $option1, 
+        'disable': $option1, 
         'option2': $option2, 
         'option3': $option3, 
         'keyword': $keyword

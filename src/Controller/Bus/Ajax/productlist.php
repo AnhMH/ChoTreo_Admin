@@ -24,5 +24,6 @@ $this->set(compact(
     'products',
     'total',
     'limit',
-    'page'
+    'page',
+    'param'
 ));
