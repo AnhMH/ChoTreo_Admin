@@ -44,6 +44,8 @@ class AppController extends Controller
     public $current_url = '';
     public $BASE_URL = '';
     public $BASE_URL_FRONT = '';
+    
+    public $_cateTemp = array();
 
     /**
      * Initialization hook method.
@@ -310,4 +312,53 @@ class AppController extends Controller
         return $base64;
     }
     
+    /**
+     * Show categories
+     * 
+     * @param array
+     * @return array
+     */
+    public function showCategories($categories, $parentid = 0, $char = '')
+    {
+        foreach ($categories as $key => $item) {
+            // Nếu là chuyên mục con thì hiển thị
+            if ($item['parent_id'] == $parentid) {
+                // Xóa chuyên mục đã lặp
+                $item['name'] = $char.$item['name'];
+                $this->_cateTemp[] = $item;
+                unset($categories[$key]);
+
+                // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
+                $this->showCategories($categories, $item['id'], $char . '|---');
+            }
+        }
+    }
+    
+    /**
+     * Get child categories by parent id
+     * 
+     * @param array
+     * @return array
+     */
+    function getCategoriesByParentId($cateId) {
+        $ids = array($cateId);
+        
+        $cates = $this->_cateTemp;
+        if (empty($cates)) {
+            $cates = Api::call(Configure::read('API.url_cates_all'), array());
+            $this->_cateTemp = $cates;
+        }
+
+        foreach ($cates as $val) {
+            if ($val['parent_id'] == $cateId) {
+                $children = $this->getCategoriesByParentId($val['id']);
+                if ($children) {
+                    $ids = array_merge($children, $ids);
+                }
+                break;
+            }
+        }
+
+        return $ids;
+    }
 }

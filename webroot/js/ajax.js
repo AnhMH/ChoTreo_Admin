@@ -1423,7 +1423,7 @@ function cms_create_group($cont) {
 function cms_load_listgroup() {
     var $param = {
         'type': 'POST',
-        'url': 'product/cms_load_listgroup',
+        'url': BASE_URL + '/ajax/cateall',
         'data': null,
         'callback': function (data) {
             $('#prd_group_id').html(data);
@@ -2642,7 +2642,7 @@ function cms_paging_product($page) {
     $option3 = $('#prd_manufacture_id').val();
     $data = {
         'disable': $option1, 
-        'option2': $option2, 
+        'cate_id': $option2, 
         'option3': $option3, 
         'keyword': $keyword
     };

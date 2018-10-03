@@ -28,56 +28,28 @@
                     </label>
                 </td>
                 <td class="text-center zoomin" style="width: 35px;"><?php echo (!empty($item['image'])) ? "<img src='{$item['image']}' alt='{$item['name']}'/>" : '<i class="fa fa-cloud-upload" style="font-size: 18px; color: #337ab7; cursor: pointer; "></i>' ?></td>
-                <td class="text-left prd_name"
-                    onclick="<?php if (isset($data['option'])) {
-                        if ($data['option'] == 1)
-                            echo 'cms_detail_product_deactivated';
-                        elseif ($data['option'] == 2)
-                            echo 'cms_detail_product_deleted';
-                        else
-                            echo 'cms_detail_product';
-                    } else
-                        echo 'cms_detail_product'; ?>
-                        (<?php echo $item['id']; ?>)"
-                    style="color: #2a6496; cursor: pointer;"><?php echo $item['name']; ?></td>
+                <td class="text-left prd_name" onclick="cms_detail_product(<?php echo $item['id']; ?>)" style="color: #2a6496; cursor: pointer;"><?php echo $item['name']; ?></td>
                 <td class="text-center"><?php echo $item['code']; ?></td>
                 <td class="text-center"><?php echo $item['qty']; ?></td>
                 <td class="text-right" style="font-weight: bold;"><?php echo number_format($item['sell_price']); ?></td>
-                <td><?php echo $item['cate_id']; ?></td>
-                <td><?php echo $item['manufacture_id']; ?></td>
+                <td><?php echo !empty($item['cate_name']) ? $item['cate_name'] : '-'; ?></td>
+                <td><?php echo !empty($item['manufacture_id']) ? $item['manufacture_id'] : '-'; ?></td>
                 <td class="text-center">
                     <i title="Copy" onclick="cms_clone_product(<?php echo $item['id']; ?>);" class="fa fa-files-o blue"
                        style="margin-right: 5px;"></i>
                     <?php
-                    if (isset($param['disable'])){
-                        if ($param['disable'] == 1){
-                        ?>
+                    if (!empty($param['disable'])): ?>
                         <i title="Khôi phục" class="fa fa-repeat"
                            onclick="cms_restore_product_deactivated(<?php echo $item['id'].','.$page; ?>);"
                            style="margin-right: 5px; color: #C6699F; cursor: pointer;"></i>
-                        <i class="fa fa-trash-o" style="color: darkred;" title="Xóa"
-                           onclick="cms_delete_product(<?php echo $item['id'].','.$page; ?>)"></i>
-                        <?php
-                        } else {
-                            ?>
-                                <i title="Ngừng kinh doanh" class="fa fa-pause"
-                                   onclick="cms_deactivate_product(<?php echo $item['id'].','.$page; ?>);"
-                                   style="margin-right: 5px; color: #C6699F; cursor: pointer;"></i>
-                                <i class="fa fa-trash-o" style="color: darkred;" title="Xóa"
-                                   onclick="cms_delete_product(<?php echo $item['id'].','.$page; ?>)"></i>
-                                <?php
-                        }
-                    }else{
-                        ?>
+                    <?php else: ?>
                         <i title="Ngừng kinh doanh" class="fa fa-pause"
                            onclick="cms_deactivate_product(<?php echo $item['id'].','.$page; ?>);"
                            style="margin-right: 5px; color: #C6699F; cursor: pointer;"></i>
-                        <i class="fa fa-trash-o" style="color: darkred;" title="Xóa"
-                           onclick="cms_delete_product(<?php echo $item['id'].','.$page; ?>)"></i>
-                        <?php
-                    }
-
-                ?>
+                    <?php endif; ?>
+                    
+                    <i class="fa fa-trash-o" style="color: darkred;" title="Xóa"
+                       onclick="cms_delete_product(<?php echo $item['id'].','.$page; ?>)"></i>
                 </td>
             </tr>
         <?php endforeach;

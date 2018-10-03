@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-3 padd-0" style="margin-right: 10px;">
                         <select class="form-control search-option-2" id="prd_group_id">
-                            <option value="-1" selected="selected">--Danh mục--</option>
+                            <option value="0" selected="selected">--Danh mục--</option>
                         </select>
                     </div>
                     <div class="col-md-3 padd-0" style="margin-right: 10px;">

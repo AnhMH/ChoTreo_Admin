@@ -111,4 +111,11 @@ class AjaxController extends AppController {
         $this->autoRender = false;
         include ('Bus/Ajax/productdel.php');
     }
+    
+    /**
+     * Cate all
+     */
+    public function cateall() {
+        include ('Bus/Ajax/cateall.php');
+    }
 }
