@@ -103,4 +103,12 @@ class AjaxController extends AppController {
         $this->autoRender = false;
         include ('Bus/Ajax/productdisable.php');
     }
+    
+    /**
+     * Product delete
+     */
+    public function productdel() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/productdel.php');
+    }
 }

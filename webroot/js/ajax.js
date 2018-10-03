@@ -1687,10 +1687,10 @@ function cms_delete_product($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_delete_product/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/productdel/',
+            'data': {'id' : $id},
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     $('.ajax-success-ct').html('Xóa sản phẩm thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                     cms_paging_product($page);
                 } else if (data == '0') {
@@ -1707,10 +1707,10 @@ function cms_delete_product_bydetail($id) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_delete_product/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/productdel/',
+            'data': {'id' : $id},
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     $('.ajax-success-ct').html('Xóa sản phẩm thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                     setTimeout(function () {
                         cms_javascript_redirect(cms_javascrip_fullURL());
