@@ -133,4 +133,12 @@ class AjaxController extends AppController {
         $this->autoRender = false;
         include ('Bus/Ajax/catecreate.php');
     }
+    
+    /**
+     * Cate delete
+     */
+    public function catedel() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/catedel.php');
+    }
 }

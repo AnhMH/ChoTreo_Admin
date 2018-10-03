@@ -1494,35 +1494,40 @@ function cms_delete_Group($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_delete_Group/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/catedel/',
+            'data': {
+                'id': $id
+            },
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     cms_paging_group($page);
-                    $('.ajax-success-ct').html('Xóa danh mục thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-success-ct').html('Xóa danh mục thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                     cms_load_listgroup();
                 } else if (data == '0') {
-                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(1000).fadeOut('slow');
-                } else if (data == '2') {
+                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
+                } else if (data == '-1') {
                     if (confirm('Danh mục này đã có chứa sản phẩm, Bạn có chắc chắn muốn xóa?')) {
                         var $param = {
                             'type': 'POST',
-                            'url': 'product/cms_delete_Group_WithProduct/' + $id,
-                            'data': null,
+                            'url': BASE_URL + '/ajax/catedel/',
+                            'data': {
+                                'id': $id,
+                                'delete_product': 1
+                            },
                             'callback': function (data) {
-                                if (data == '1') {
+                                if (data > 0) {
                                     cms_paging_group($page);
                                     cms_load_listgroup();
-                                    $('.ajax-success-ct').html('Xóa danh mục thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                                    $('.ajax-success-ct').html('Xóa danh mục thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                                 } else {
-                                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(1000).fadeOut('slow');
+                                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                                 }
                             }
                         };
                         cms_adapter_ajax($param);
                     }
                 } else {
-                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
@@ -1532,7 +1537,15 @@ function cms_delete_Group($id, $page) {
 
 function cms_add_product(type) {
     'use strict';
-    var $store_id = $('#store-id').val();
+    var file_data = $('#photo').prop('files')[0];
+    if (typeof file_data != 'undefined') {
+        var imagetype = file_data.type;
+        var match = ["image/gif", "image/png", "image/jpg", "image/jpeg"];
+        if (match.indexOf(imagetype) < 0) {
+            $('.ajax-error-ct').html('Hình ảnh không đúng định dạng.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
+            return false;
+        }
+    }
     var $code = $.trim($('#prd_code').val());
     var $name = $.trim($('#prd_name').val());
     var $sls = $.trim($('#prd_sls').val());
@@ -1542,10 +1555,6 @@ function cms_add_product(type) {
     var $sell_price = cms_decode_currency_format($('#prd_sell_price').val());
     var $group_id = $('#prd_group_id').val();
     var $manufacture_id = $('#prd_manufacture_id').val();
-    var $vat = $('#prd_vat').val();
-    var $img_url;
-    var $img_afurl = $('#prd_image_urls').attr('src');
-    $img_url = (typeof $img_afurl == 'undefined' ) ? '' : $img_afurl;
     var $description = CKEDITOR.instances['ckeditor'].getData();
     var $display_wb = cms_get_valCheckbox('display_website', 'id');
     var $new = cms_get_valCheckbox('prd_new', 'id');
@@ -1564,8 +1573,6 @@ function cms_add_product(type) {
             'sell_price': $sell_price,
             'cate_id': $group_id,
             'manufacture_id': $manufacture_id,
-//            'prd_vat': $vat,
-            'image': $img_url,
             'description': $description,
             'is_display_web': $display_wb,
             'is_new': $new,
@@ -1573,10 +1580,17 @@ function cms_add_product(type) {
             'is_feature': $highlight,
             'add_update' : 1
         };
+        var form_data = new FormData();
+        if (typeof file_data != 'undefined') {
+            form_data.append('file', file_data);
+        }
+        for (var key in $data) {
+            form_data.append(key, $data[key]);
+        }        
         var $param = {
             'type': 'POST',
             'url': BASE_URL + '/ajax/productcreate/',
-            'data': $data,
+            'data': form_data,
             'callback': function (data) {
                 if (data > 0) {
                     if (type == 'save') {
@@ -1594,7 +1608,7 @@ function cms_add_product(type) {
                 }
             }
         };
-        cms_adapter_ajax($param);
+        cms_adapter_ajax($param, true);
     }
 }
 
