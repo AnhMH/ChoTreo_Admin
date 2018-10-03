@@ -7,6 +7,12 @@ use Cake\Core\Configure;
 $param = $this->request->data();
 $product = array();
 if (!empty($param['add_update'])) {
+    if (!empty($_FILES['file'])) {
+        $filetype = $_FILES['file']['type'];
+        $filename = $_FILES['file']['name'];
+        $filedata = $_FILES['file']['tmp_name'];
+        $param['image'] = new CurlFile($filedata, $filetype, $filename);
+    }
     // Call api
     $id = Api::call(Configure::read('API.url_products_addupdate'), $param);
     if (!empty($id) && !Api::getError()) {

@@ -112,19 +112,25 @@
                 </div>
             </div>
             <div class="col-md-12 padd-20">
-                                    <div class="jumbotron text-center" id="img_upload"
-                                         style="border-radius: 0; margin-bottom: 10px; padding: 15px 20px;">
-                                        <h3>Upload hình ảnh sản phẩm</h3>
-                                        <small style="font-size: 14px; margin-bottom: 5px; display: inline-block;">(Để
-                                            tải và hiện thị nhanh, mỗi ảnh lên có dung lượng 500KB. Tải tối đa 10MB.)
-                                        </small>
-                                        <p>
-                                            <button class="btn" style="background-color: #337ab7; " ><i
-                                                    class="fa fa-picture-o" style="font-size: 40px;color: #fff; "></i>
-                                            </button>
-                                        </p>
-                                    </div>
-                                </div>
+                <div class="jumbotron text-center" id="img_upload"
+                     style="border-radius: 0; margin-bottom: 10px; padding: 15px 20px;">
+                    <?php if (!empty($product['image'])): ?>
+                    <h3>Hình ảnh sản phẩm</h3>
+                    <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" width="30%">
+                    <?php else: ?>
+                    <h3>Upload hình ảnh sản phẩm</h3>
+                    <small style="font-size: 14px; margin-bottom: 5px; display: inline-block;">(Để
+                        tải và hiện thị nhanh, mỗi ảnh lên có dung lượng 500KB. Tải tối đa 10MB.)
+                    </small>
+                    <p>
+                        <button class="btn" style="background-color: #337ab7; " ><i
+                                class="fa fa-picture-o" style="font-size: 40px;color: #fff; "></i>
+                        </button>
+                    </p>
+                    <?php endif; ?>
+
+                </div>
+            </div>
         </div>
         <div class="expand-info">
             <div class="row">
@@ -200,8 +206,3 @@
         </div>
 </div>
 <?php endif; ?>
-
-<!--<script>
-    $('#ckeditor').ckeditorGet().setReadOnly();
-    initSample();
-</script>-->

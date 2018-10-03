@@ -335,17 +335,37 @@ function cms_del_pro_order() {
  *
  * default type POST
  /*********************************************************************/
-function cms_adapter_ajax($param) {
-    $.ajax({
-        headers: {
-            'X-CSRF-Token': _csrfToken
-        },
-        url: $param.url,
-        type: $param.type,
-        data: $param.data,
-        async: true,
-        success: $param.callback
-    });
+function cms_adapter_ajax($param, $isUploadFile) {
+    if (typeof $isUploadFile == 'undefined') {
+        $isUploadFile = false;
+    }
+    if ($isUploadFile) {
+        $.ajax({
+            headers: {
+                'X-CSRF-Token': _csrfToken
+            },
+            url: $param.url,
+            type: $param.type,
+            data: $param.data,
+            async: true,
+            success: $param.callback,
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    } else {
+        $.ajax({
+            headers: {
+                'X-CSRF-Token': _csrfToken
+            },
+            url: $param.url,
+            type: $param.type,
+            data: $param.data,
+            async: true,
+            success: $param.callback
+        });
+    }
+    
 }
 
 /*
@@ -1573,9 +1593,25 @@ function cms_add_product(type) {
     }
 }
 
-function cms_update_product($id) {
+function cms_update_product($id, e) {
     'use strict';
+    
+    var file_data = $('#photo').prop('files')[0];
+    if (typeof file_data != 'undefined') {
+        var type = file_data.type;
+        console.log(type);
+        var match = ["image/gif", "image/png", "image/jpg", "image/jpeg"];
+        if (match.indexOf(type) < 0) {
+            $('.ajax-error-ct').html('Hình ảnh không đúng định dạng.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
+            return false;
+        }
+    }
+    
     var $name = $.trim($('#prd_name').val());
+    if ($name.length == 0) {
+        $('.ajax-error-ct').html('Vui lòng nhập tên sản phẩm.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
+        return false;
+    }
     var $sls = $.trim($('#prd_sls').val());
     var $inventory = cms_get_valCheckbox('prd_inventory', 'id');
     var $allownegative = cms_get_valCheckbox('prd_allownegative', 'id');
@@ -1588,44 +1624,47 @@ function cms_update_product($id) {
     var $new = cms_get_valCheckbox('prd_new', 'id');
     var $hot = cms_get_valCheckbox('prd_hot', 'id');
     var $highlight = cms_get_valCheckbox('prd_highlight', 'id');
-    if ($name.length == 0) {
-        $('.ajax-error-ct').html('Vui lòng nhập tên sản phẩm.').parent().fadeIn().delay(1000).fadeOut('slow');
-    } else {
-        var $data = {
-            'id' : $id,
-            'name': $name,
-            'qty': $sls,
-            'is_inventory': $inventory,
-            'is_allow_negative': $allownegative,
-            'origin_price': $origin_price,
-            'sell_price': $sell_price,
-            'cate_id': $group_id,
-            'manufacture_id': $manufacture_id,
-            'description': $description,
-            'is_display_web': $display_wb,
-            'is_new': $new,
-            'is_hot': $hot,
-            'is_feature': $highlight,
-            'add_update' : 1,
-//            'image': form_data,
-        };
-        var $param = {
-            'type': 'POST',
-            'url': BASE_URL + '/ajax/productcreate/',
-            'data': $data,
-            'callback': function (data) {
-                if (data > 0) {
-                    $('.ajax-success-ct').html('Cập nhật sản phẩm ' + $name + ' thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
-                    setTimeout(function () {
-                        $('.btn-back').trigger('click');
-                    }, 2000);
-                } else {
-                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
-                }
-            }
-        };
-        cms_adapter_ajax($param);
+    
+    var $data = {
+        'id' : $id,
+        'name': $name,
+        'qty': $sls,
+        'is_inventory': $inventory,
+        'is_allow_negative': $allownegative,
+        'origin_price': $origin_price,
+        'sell_price': $sell_price,
+        'cate_id': $group_id,
+        'manufacture_id': $manufacture_id,
+        'description': $description,
+        'is_display_web': $display_wb,
+        'is_new': $new,
+        'is_hot': $hot,
+        'is_feature': $highlight,
+        'add_update' : 1,
+    };
+    var form_data = new FormData();
+    if (typeof file_data != 'undefined') {
+        form_data.append('file', file_data);
     }
+    for (var key in $data) {
+        form_data.append(key, $data[key]);
+    }        
+    var $param = {
+        'type': 'POST',
+        'url': BASE_URL + '/ajax/productcreate/',
+        'data': form_data,
+        'callback': function (data) {
+            if (data > 0) {
+                $('.ajax-success-ct').html('Cập nhật sản phẩm ' + $name + ' thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
+                setTimeout(function () {
+                    $('.btn-back').trigger('click');
+                }, 2000);
+            } else {
+                $('.ajax-error-ct').html(data).parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
+            }
+        }
+    };
+    cms_adapter_ajax($param, true);
 }
 
 function cms_paging_listcustomer($page) {
