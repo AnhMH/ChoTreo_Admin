@@ -1426,8 +1426,8 @@ function cms_load_listgroup() {
         'url': BASE_URL + '/ajax/cateall',
         'data': null,
         'callback': function (data) {
+            $('#parentid').html(data);
             $('#prd_group_id').html(data);
-            cms_load_listgroup_withoutCreate();
             cms_product_group_show();
         }
     };
@@ -1593,7 +1593,7 @@ function cms_add_product(type) {
     }
 }
 
-function cms_update_product($id, e) {
+function cms_update_product($id) {
     'use strict';
     
     var file_data = $('#photo').prop('files')[0];
@@ -2817,7 +2817,7 @@ function cms_paging_input($page) {
 function cms_paging_group($page) {
     var $param = {
         'type': 'POST',
-        'url': 'product/cms_paging_group/' + $page,
+        'url': BASE_URL + '/ajax/catelist/' + $page,
         'data': null,
         'callback': function (data) {
             $('.prd_group-body').html(data);

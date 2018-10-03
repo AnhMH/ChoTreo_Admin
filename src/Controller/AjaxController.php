@@ -118,4 +118,11 @@ class AjaxController extends AppController {
     public function cateall() {
         include ('Bus/Ajax/cateall.php');
     }
+    
+    /**
+     * Cate list
+     */
+    public function catelist($page) {
+        include ('Bus/Ajax/catelist.php');
+    }
 }

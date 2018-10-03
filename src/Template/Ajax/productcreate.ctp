@@ -76,7 +76,7 @@
                                                                    class="checkbox"
                                                                    name="confirm"
                                                                    value="1"
-                                                                   <?php echo!empty($product['is_allow_negative']) ? 'checked="checked"' : ''; ?>>
+                                                                   <?php echo !empty($product['is_allow_negative']) ? 'checked="checked"' : ''; ?>>
                                         <span></span> Cho phép bán âm?</label>
                                 </div>
                             </div>
@@ -101,26 +101,22 @@
 
                                     <div class="col-md-11 padd-0">
                                         <select class="form-control" id="prd_group_id">
+                                            <option value="0" selected="selected">--Danh mục--</option>
                                             <optgroup label="Chọn danh mục">
+                                                <?php $cateId = !empty($product['cate_id']) ? $product['cate_id'] : ''; ?>
                                                 <?php
-                                                $group_id = 0;
-                                                if (isset($data['_detail_product']))
-                                                    $group_id = $data['_detail_product']['prd_group_id'];
-                                                ?>
-                                                <?php
-                                                if (isset($data['_prd_group']) && count($data['_prd_group'])):
-                                                    foreach ($data['_prd_group'] as $key => $item) :
+                                                if (!empty($cates)):
+                                                    foreach ($cates as $key => $item) :
                                                         ?>
-                                                        <option <?php if ($group_id == $item['id']) echo 'selected ' ?>
-                                                            value="<?php echo $item['id']; ?>"><?php echo $item['prd_group_name']; ?></option>
+                                                        <option <?php if ($cateId == $item['id']) echo 'selected ' ?>
+                                                            value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
                                                             <?php
                                                         endforeach;
                                                     endif;
                                                     ?>
                                             </optgroup>
                                             <optgroup label="------------------------">
-                                                <option value="product_group" data-toggle="modal" data-target="#list-prd-group">Tạo mới danh mục
-                                                </option>
+                                                <option value="product_group" data-toggle="modal" data-target="#list-prd-group">Tạo mới danh mục</option>
                                             </optgroup>
                                         </select>
                                     </div>

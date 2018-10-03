@@ -33,3 +33,12 @@ if (!empty($id)) {
             'isUpdate'
     ));
 }
+$this->_cateTemp = array();
+
+// Call api
+$result = Api::call(Configure::read('API.url_cates_all'), $param);
+$this->showCategories($result);
+$cates = $this->_cateTemp;
+$this->set(compact(
+            'cates'
+    ));

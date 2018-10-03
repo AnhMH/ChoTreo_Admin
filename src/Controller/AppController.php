@@ -320,6 +320,9 @@ class AppController extends Controller
      */
     public function showCategories($categories, $parentid = 0, $char = '')
     {
+        if (empty($categories)) {
+            return '';
+        }
         foreach ($categories as $key => $item) {
             // Nếu là chuyên mục con thì hiển thị
             if ($item['parent_id'] == $parentid) {

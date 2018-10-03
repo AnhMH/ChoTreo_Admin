@@ -95,7 +95,7 @@
                                     <label>Danh mục</label>
 
                                     <div class="col-md-12 padd-0">
-                                        <div><?php echo (empty($product['cate_id'])) ? 'Chưa có danh mục' : $product['cate_id']; ?></div>
+                                        <div><?php echo (empty($product['cate_name'])) ? 'Chưa có danh mục' : $product['cate_name']; ?></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 padd-right-0">
