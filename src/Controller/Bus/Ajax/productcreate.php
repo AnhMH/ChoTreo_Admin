@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 // Init param
 $param = $this->request->data();
 $product = array();
-if (!empty($param['add_update'])) {
+if (!empty($param['add_update']) && empty($param['is_clone'])) {
     if (!empty($_FILES['file'])) {
         $filetype = $_FILES['file']['type'];
         $filename = $_FILES['file']['name'];
@@ -27,7 +27,9 @@ if (!empty($id)) {
         'id' => $id
     ));
     $product = !empty($result['product']) ? $result['product'] : array();
-    $isUpdate = 1;
+    if (empty($param['is_clone'])) {
+        $isUpdate = 1;
+    }
     $this->set(compact(
             'product',
             'isUpdate'

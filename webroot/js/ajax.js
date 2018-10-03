@@ -1921,8 +1921,10 @@ function cms_detail_product_deactivated($id) {
 function cms_clone_product($id) {
     var $param = {
         'type': 'POST',
-        'url': 'product/cms_clone_product/' + $id,
-        'data': null,
+        'url': BASE_URL + '/ajax/productcreate/' + $id,
+        'data': {
+            'is_clone': 1
+        },
         'callback': function (data) {
             $('.products').html(data);
             cms_product_group_show();
