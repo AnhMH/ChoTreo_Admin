@@ -1391,17 +1391,19 @@ function cms_create_group($cont) {
     'use strict';
     var $prd_group_name = $.trim($('#prd_group_name').val());
     var $parentid = $('#parentid').val();
-    var $data = {'data': {'prd_group_name': $prd_group_name, 'parentid': $parentid}};
-    if ($parentid == 1) $data = {'data': {'prd_group_name': $prd_group_name}};
+    var $data = {
+        'name': $prd_group_name, 
+        'parent_id': $parentid
+    };
     if ($prd_group_name.length == 0) {
         alert('Nhập tên danh mục.');
     } else {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_create_group',
+            'url': BASE_URL + '/ajax/catecreate',
             'data': $data,
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     cms_paging_group(1);
                     cms_load_listgroup();
                     $('.ajax-success-ct').html('Tạo danh mục thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
@@ -1467,15 +1469,18 @@ function cms_save_item_prdGroup($id) {
     } else {
         var $param = {
             'type': 'POST',
-            'url': 'product/cms_save_item_prdGroup/' + $id,
-            'data': {'data': {'prd_group_name': $prd_group_name}},
+            'url': BASE_URL + '/ajax/catecreate',
+            'data': {
+                'id': $id,
+                'name': $prd_group_name
+            },
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     cms_paging_group(1);
                     cms_load_listgroup();
-                    $('.ajax-success-ct').html('Cập nhật danh mục thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-success-ct').html('Cập nhật danh mục thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 } else {
-                    $('.ajax-error-ct').html('Tên danh mục đã có trong hệ thống. Vui lòng chọn tên khác.').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html('Tên danh mục đã có trong hệ thống. Vui lòng chọn tên khác.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };

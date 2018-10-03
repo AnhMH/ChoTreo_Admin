@@ -125,4 +125,12 @@ class AjaxController extends AppController {
     public function catelist($page) {
         include ('Bus/Ajax/catelist.php');
     }
+    
+    /**
+     * Cate create
+     */
+    public function catecreate() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/catecreate.php');
+    }
 }
