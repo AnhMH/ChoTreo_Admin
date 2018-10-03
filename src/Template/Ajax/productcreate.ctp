@@ -11,13 +11,15 @@
                 <div class="col-md-6">
                     <div class="right-action text-right">
                         <div class="btn-groups">
-                            <button type="button" class="btn btn-primary" onclick="cms_add_product( 'save' );"><i
+                            <button type="button" class="btn btn-primary" onclick="<?php echo (!empty($isUpdate) && !empty($product['id'])) ? "cms_update_product({$product['id']})" : "cms_add_product( 'save' )";?>;"><i
                                     class="fa fa-check"></i> Lưu
                             </button>
+                            <?php if (empty($isUpdate)): ?>
                             <button type="button" class="btn btn-primary "
                                     onclick="cms_add_product( 'saveandcontinue' );"><i class="fa fa-floppy-o"></i> Lưu
                                 và tiếp tục
                             </button>
+                            <?php endif; ?>
                             <button type="button" class="btn btn-default"
                                     onclick="cms_javascript_redirect( cms_javascrip_fullURL() )"><i
                                     class="fa fa-arrow-left"></i> Trở về
@@ -45,20 +47,20 @@
                                 <div class="col-md-6 padd-left-0">
                                     <label>Tên sản phẩm</label>
                                     <input type="text" id="prd_name"
-                                           value="<?php if (isset($data['_detail_product'])) echo $data['_detail_product']['prd_name'] . ' - copy' ?>"
+                                           value="<?php echo !empty($product['name']) ? $product['name'].(empty($isUpdate) ? ' -copy' : '') : ''; ?>"
                                            class="form-control"
                                            placeholder="Nhập tên sản phẩm"/>
                                 </div>
                                 <div class="col-md-6 padd-right-0">
                                     <label>Mã sản phẩm</label>
-                                    <input type="text" id="prd_code" class="form-control "
+                                    <input type="text" id="prd_code" class="form-control " <?php echo (!empty($product['code']) && !empty($isUpdate)) ? "disabled value='{$product['code']}'" : "";?>
                                            placeholder="Nếu không nhập, hệ thống sẽ tự sinh."/>
                                 </div>
                             </div>
                             <div class="form-group clearfix">
                                 <div class="col-md-6 padd-left-0">
                                     <label>Số lượng</label>
-                                    <input type="text" id="prd_sls" value="" placeholder="0"
+                                    <input type="text" id="prd_sls" value="<?php echo (!empty($product['qty'])) ? $product['qty'] : '0';?>" placeholder="0"
                                            class="form-control text-right txtNumber"/>
                                 </div>
                                 <div class="col-md-6 padd-right-0">
@@ -67,14 +69,14 @@
                                                                                            class="checkbox"
                                                                                            name="confirm"
                                                                                            value="1"
-                                            <?php if (isset($data['_detail_product']) and $data['_detail_product']['prd_inventory'] == 1) echo 'checked="checked"' ?>
+                                            <?php echo !empty($product['is_inventory']) ? 'checked="checked"' : '' ?>
                                             ><span></span> Theo dõi tồn kho?</label>
                                     <label class="checkbox"><input type="checkbox"
                                                                    id="prd_allownegative"
                                                                    class="checkbox"
                                                                    name="confirm"
                                                                    value="1"
-                                            <?php if (isset($data['_detail_product']) and $data['_detail_product']['prd_allownegative'] == 1) echo 'checked="checked"' ?>>
+                                            <?php echo !empty($product['is_allow_negative']) ? 'checked="checked"' : ''; ?>>
                                         <span></span> Cho phép bán âm?</label>
                                 </div>
                             </div>
@@ -83,13 +85,13 @@
                                 <div class="col-md-6 padd-left-0">
                                     <label>Giá vốn</label>
                                     <input type="text" id="prd_origin_price"
-                                           value="<?php if (isset($data['_detail_product'])) echo $data['_detail_product']['prd_origin_price'] ?>"
-                                           class="form-control text-right txtMoney" placeholder="Nhập giá vốn"/>
+                                           value="<?php echo !empty($product['origin_price']) ? $product['origin_price'] : '0'; ?>"
+                                           class="form-control text-right txtMoney" placeholder="0"/>
                                 </div>
                                 <div class="col-md-6 padd-right-0">
                                     <label>Giá bán</label>
                                     <input type="text" id="prd_sell_price"
-                                           value="<?php if (isset($data['_detail_product'])) echo $data['_detail_product']['prd_sell_price'] ?>"
+                                           value="<?php echo !empty($product['sell_price']) ? $product['sell_price'] : '0'; ?>"
                                            class="form-control txtMoney text-right" placeholder="0"/>
                                 </div>
                             </div>
@@ -115,9 +117,7 @@
                                                 ?>
                                             </optgroup>
                                             <optgroup label="------------------------">
-                                                <option value="product_group" data-toggle="modal"
-                                                        data-target="#list-prd-group">Tạo mới danh
-                                                    mục
+                                                <option value="product_group" data-toggle="modal" data-target="#list-prd-group">Tạo mới danh mục
                                                 </option>
                                             </optgroup>
                                         </select>
@@ -169,6 +169,26 @@
                         </div>
                     </div>
                 </div>
+                
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 padd-20">
+                                    <div class="jumbotron text-center" id="img_upload"
+                                         style="border-radius: 0; margin-bottom: 10px; padding: 15px 20px;">
+                                        <h3>Upload hình ảnh sản phẩm</h3>
+                                        <small style="font-size: 14px; margin-bottom: 25px; display: inline-block;">(Để
+                                            tải và hiện thị nhanh, mỗi ảnh lên có dung lượng 500KB. Tải tối đa 10MB.)
+                                        </small>
+                                        <center>
+                                            <div class="file_input_container">
+                                                <div class="upload_button"><input type="file" name="photo" id="photo" class="file_input"></div>
+                                            </div>
+                                        </center>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
             </div>
         </div>
         <div class="expand-info">
@@ -190,26 +210,6 @@
                         <!--                            <small-->
                         <!--                            ">Hình ảnh và mô tả sản phẩm.</small>-->
                         <!--                        </div>-->
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 padd-20">
-                                    <div class="jumbotron text-center" id="img_upload"
-                                         style="border-radius: 0; margin-bottom: 10px; padding: 15px 20px;">
-                                        <h3>Upload hình ảnh sản phẩm</h3>
-                                        <small style="font-size: 14px; margin-bottom: 5px; display: inline-block;">(Để
-                                            tải và hiện thị nhanh, mỗi ảnh lên có dung lượng 500KB. Tải tối đa 10MB.)
-                                        </small>
-                                        <p>
-                                            <button class="btn" style="background-color: #337ab7; "
-                                                    onclick="browseKCFinder('img_upload','image');return false;"><i
-                                                    class="fa fa-picture-o" style="font-size: 40px;color: #fff; "></i>
-                                            </button>
-                                        </p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                         <div class="col-md-12 padd-20">
                             <h4 style="margin-top: 0;">Mô tả
                                 <small style="font-style: italic;">(Nhập thông tin mô tả chi tiết hơn để khách
@@ -217,7 +217,7 @@
                                 </small>
                             </h4>
                             <!--                                    <textarea id="ck_editor" id="prd_description"></textarea>-->
-                            <div id="ckeditor"></div>
+                            <div id="ckeditor"><?php echo !empty($product['description']) ? $product['description'] : ''; ?></div>
                         </div>
                         <div class="col-md-3 padd-20">
                             <h4>Thông tin cho web</h4>
@@ -228,25 +228,27 @@
                             <div class="row">
                                 <div class="checkbox-group" style="margin-top: 20px;">
                                     <label class="checkbox"><input type="checkbox" class="checkbox"
-                                                                   id="display_website"><span></span> Hiện thị ra
+                                                                   id="display_website" value="1" <?php echo !empty($product['is_display_web']) ? 'checked' : '';?>><span></span> Hiện thị ra
                                         website</label>
                                     <br>
                                     <label class="checkbox"><input type="checkbox" id="prd_highlight"
-                                                                   class="checkbox"><span></span> Nổi bật</label>&nbsp;&nbsp;<label
+                                                                   class="checkbox" value="1" <?php echo !empty($product['is_feature']) ? 'checked' : '';?>><span></span> Nổi bật</label>&nbsp;&nbsp;<label
                                         class="checkbox"><input type="checkbox" class="checkbox"
-                                                                id="prd_new"><span></span> Hàng mới</label>&nbsp;&nbsp;&nbsp;<label
+                                                                id="prd_new" value="1" <?php echo !empty($product['is_new']) ? 'checked' : '';?>><span></span> Hàng mới</label>&nbsp;&nbsp;&nbsp;<label
                                         class="checkbox"><input type="checkbox" class="checkbox"
-                                                                id="prd_hot"><span></span> Đang bán chạy</label>
+                                                                id="prd_hot" value="1" <?php echo !empty($product['is_hot']) ? 'checked' : '';?>><span></span> Đang bán chạy</label>
                                 </div>
                             </div>
                             <div class="btn-groups pull-right" style="margin-top: 15px;">
-                                <button type="button" class="btn btn-primary" onclick="cms_add_product( 'save' );"><i
+                                <button type="button" class="btn btn-primary" onclick="<?php echo (!empty($isUpdate) && !empty($product['id'])) ? "cms_update_product({$product['id']})" : "cms_add_product( 'save' )";?>;"><i
                                         class="fa fa-check"></i> Lưu
                                 </button>
+                                <?php if (empty($isUpdate)): ?>
                                 <button type="button" class="btn btn-primary "
                                         onclick="cms_add_product( 'saveandcontinue' );"><i class="fa fa-floppy-o"></i>
                                     Lưu và tiếp tục
                                 </button>
+                                <?php endif; ?>
                                 <button type="button" class="btn btn-default btn-back"
                                         onclick="cms_javascript_redirect( cms_javascrip_fullURL() )"><i
                                         class="fa fa-arrow-left"></i> Trở về

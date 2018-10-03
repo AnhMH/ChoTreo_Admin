@@ -111,6 +111,20 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12 padd-20">
+                                    <div class="jumbotron text-center" id="img_upload"
+                                         style="border-radius: 0; margin-bottom: 10px; padding: 15px 20px;">
+                                        <h3>Upload hình ảnh sản phẩm</h3>
+                                        <small style="font-size: 14px; margin-bottom: 5px; display: inline-block;">(Để
+                                            tải và hiện thị nhanh, mỗi ảnh lên có dung lượng 500KB. Tải tối đa 10MB.)
+                                        </small>
+                                        <p>
+                                            <button class="btn" style="background-color: #337ab7; " ><i
+                                                    class="fa fa-picture-o" style="font-size: 40px;color: #fff; "></i>
+                                            </button>
+                                        </p>
+                                    </div>
+                                </div>
         </div>
         <div class="expand-info">
             <div class="row">
@@ -129,22 +143,6 @@
 
                         <div class="col-md-12 padd-20">
                             <div class="row">
-                                <div class="col-md-12 padd-20">
-                                    <div class="jumbotron text-center" id="img_upload"
-                                         style="border-radius: 0; margin-bottom: 10px; padding: 15px 20px;">
-                                        <h3>Upload hình ảnh sản phẩm</h3>
-                                        <small style="font-size: 14px; margin-bottom: 5px; display: inline-block;">(Để
-                                            tải và hiện thị nhanh, mỗi ảnh lên có dung lượng 500KB. Tải tối đa 10MB.)
-                                        </small>
-                                        <p>
-                                            <button class="btn" style="background-color: #337ab7; "
-                                                    onclick="browseKCFinder('img_upload', 'image');return false;"><i
-                                                    class="fa fa-picture-o" style="font-size: 40px;color: #fff; "></i>
-                                            </button>
-                                        </p>
-                                    </div>
-                                </div>
-
                                 <div class="col-md-12 padd-20">
                                     <h4 style="margin-top: 0;">Mô tả
                                         <small style="font-style: italic;">(Nhập thông tin mô tả chi tiết hơn để khách

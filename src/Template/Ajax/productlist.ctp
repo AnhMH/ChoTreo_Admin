@@ -27,7 +27,7 @@
                         <span style="width: 15px; height: 15px;"></span>
                     </label>
                 </td>
-                <td class="text-center" style="width: 35px;"><?php echo (!empty($item['image_url'])) ? "<img src='{$item['image_url']}' alt='{$item['name']}' width='22' height='22' style='border-radius: 15px; padding: 3px; border: 1px solid #ccc;'/>" : '<i class="fa fa-cloud-upload" style="font-size: 18px; color: #337ab7; cursor: pointer; "></i>' ?></td>
+                <td class="text-center zoomin" style="width: 35px;"><?php echo (!empty($item['image'])) ? "<img src='{$item['image']}' alt='{$item['name']}'/>" : '<i class="fa fa-cloud-upload" style="font-size: 18px; color: #337ab7; cursor: pointer; "></i>' ?></td>
                 <td class="text-left prd_name"
                     onclick="<?php if (isset($data['option'])) {
                         if ($data['option'] == 1)
