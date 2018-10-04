@@ -60,9 +60,8 @@
     </tbody>
 </table>
 <div class="alert alert-info summany-info clearfix" role="alert">
-    <div class="sm-info pull-left padd-0">SL sản phẩm/SL nhà sản xuất:
-        <span><?php echo $total; ?>
-            /<?php echo (isset($data['_sl_manufacture'])) ? $data['_sl_manufacture'] : 0; ?></span></div>
+    <div class="sm-info pull-left padd-0">SL sản phẩm:
+        <span><?php echo $total; ?></span></div>
     <div class="pull-right ajax-pagination">
         <?php echo $this->Paginate->render($total, $limit, 'cms_paging_product', $page); ?>
     </div>
