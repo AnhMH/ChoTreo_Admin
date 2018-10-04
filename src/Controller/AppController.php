@@ -358,7 +358,6 @@ class AppController extends Controller
                 if ($children) {
                     $ids = array_merge($children, $ids);
                 }
-                break;
             }
         }
 

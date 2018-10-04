@@ -10,7 +10,7 @@ $(document).ready(function () {
         $('li#product').addClass('active');
         cms_product_search();
         cms_load_listgroup();
-        cms_paging_manufacture(1);
+//        cms_paging_manufacture(1);
         cms_paging_group(1);
         cms_loadListproOption();
         cms_paging_product(1);

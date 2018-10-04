@@ -13,7 +13,6 @@
         <th class="text-center">SL</th>
         <th class="text-center" style="background-color: #fff;">Giá bán</th>
         <th class="text-center">Danh mục</th>
-        <th class="text-center">Nhà sản xuất</th>
         <th></th>
     </tr>
     </thead>
@@ -33,7 +32,6 @@
                 <td class="text-center"><?php echo $item['qty']; ?></td>
                 <td class="text-right" style="font-weight: bold;"><?php echo number_format($item['sell_price']); ?></td>
                 <td><?php echo !empty($item['cate_name']) ? $item['cate_name'] : '-'; ?></td>
-                <td><?php echo !empty($item['manufacture_id']) ? $item['manufacture_id'] : '-'; ?></td>
                 <td class="text-center">
                     <i title="Copy" onclick="cms_clone_product(<?php echo $item['id']; ?>);" class="fa fa-files-o blue"
                        style="margin-right: 5px;"></i>

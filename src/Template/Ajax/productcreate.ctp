@@ -127,44 +127,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-md-6 padd-right-0">
-                                    <label>Nhà sản xuất</label>
-                                    <div class="col-md-11 padd-0">
-                                        <select class="form-control" id="prd_manufacture_id">
-                                            <optgroup label="Chọn nhà sản xuất">
-                                                <?php
-                                                $manufacture_id = 0;
-                                                if (isset($data['_detail_product']))
-                                                    $manufacture_id = $data['_detail_product']['prd_manufacture_id'];
-                                                echo $manufacture_id;
-                                                ?>
-<?php
-if (isset($data['_prd_manufacture']) && count($data['_prd_manufacture'])):
-    foreach ($data['_prd_manufacture'] as $key => $val) :
-        ?>
-                                                        <option <?php if ($manufacture_id == $val['ID']) echo 'selected ' ?>
-                                                            value="<?php echo $val['ID']; ?>"><?php echo $val['prd_manuf_name']; ?></option>
-        <?php
-    endforeach;
-endif;
-?>
-                                            </optgroup>
-                                            <optgroup label="------------------------">
-                                                <option value="product_manufacture" data-toggle="modal"
-                                                        data-target="#list-prd-manufacture">Tạo mới
-                                                    Nhà sản xuất
-                                                </option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-1 padd-0">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#list-prd-manufacture"
-                                                style="border-radius: 0 3px 3px 0; box-shadow: none;">...
-                                        </button>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

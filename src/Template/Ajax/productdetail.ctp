@@ -98,14 +98,6 @@
                                         <div><?php echo (empty($product['cate_name'])) ? 'Chưa có danh mục' : $product['cate_name']; ?></div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 padd-right-0">
-                                    <label>Nhà sản xuất</label>
-
-                                    <div class="col-md-12 padd-0">
-                                        <div><?php echo (empty($product['manufacture_id'])) ? 'Chưa có Nhà sản xuất' : $product['manufacture_id']; ?></div>
-                                    </div>
-                                </div>
-
                             </div>
                             <!--                            <div class="form-group clearfix">-->
                             <!--                                <div class="col-md-6 padd-0">-->
