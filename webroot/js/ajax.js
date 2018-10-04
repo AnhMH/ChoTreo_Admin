@@ -2688,7 +2688,7 @@ function cms_paging_product($page) {
 function cms_paging_order($page) {
     $keyword = $('#order-search').val();
     $option1 = $('#search-option-1').val();
-    $customer_id = -1;
+    $customer_id = 0;
 
     if ($('#customer-id').val() != null)
         $customer_id = $('#customer-id').val();
@@ -2696,17 +2696,15 @@ function cms_paging_order($page) {
     $date_from = $('#search-date-from').val();
     $date_to = $('#search-date-to').val();
     $data = {
-        'data': {
-            'option1': $option1,
-            'keyword': $keyword,
-            'date_from': $date_from,
-            'date_to': $date_to,
-            'customer_id': $customer_id
-        }
+        'option1': $option1,
+        'keyword': $keyword,
+        'date_from': $date_from,
+        'date_to': $date_to,
+        'customer_id': $customer_id
     };
     var $param = {
         'type': 'POST',
-        'url': 'orders/cms_paging_order/' + $page,
+        'url': BASE_URL + '/ajax/orderlist/' + $page,
         'data': $data,
         'callback': function (data) {
             $('.orders-main-body').html(data);

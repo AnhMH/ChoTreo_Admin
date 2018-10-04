@@ -141,4 +141,11 @@ class AjaxController extends AppController {
         $this->autoRender = false;
         include ('Bus/Ajax/catedel.php');
     }
+    
+    /**
+     * Order list
+     */
+    public function orderlist($page) {
+        include ('Bus/Ajax/orderlist.php');
+    }
 }
