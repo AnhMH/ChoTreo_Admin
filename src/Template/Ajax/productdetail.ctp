@@ -189,6 +189,16 @@
                                         <input type="checkbox" disabled <?php echo (!empty($product['is_hot'])) ? 'checked' : ''; ?> class="checkbox" id="prd_hot"><span></span>Đang bán chạy
                                     </label>
                                 </div>
+                                <div class="form-group">
+                                    <label>Seo description</label>
+                                    <input type="text" disabled style="background: #fff;" value="<?php echo !empty($product['seo_description']) ? $product['seo_description'] : 'Chưa có'; ?>"
+                                           class="form-control" placeholder="Seo description"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Seo keywords</label>
+                                    <input type="text" disabled style="background: #fff;" value="<?php echo !empty($product['seo_keyword']) ? $product['seo_keyword'] : 'Chưa có'; ?>"
+                                           class="form-control" placeholder="Seo keywords"/>
+                                </div>
                             </div>
                             <div class="btn-groups pull-right" style="margin-top: 15px;">
                                 <button type="button" class="btn btn-primary" style="background-color: #8B8B8B;"

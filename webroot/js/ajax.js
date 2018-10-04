@@ -1560,6 +1560,8 @@ function cms_add_product(type) {
     var $new = cms_get_valCheckbox('prd_new', 'id');
     var $hot = cms_get_valCheckbox('prd_hot', 'id');
     var $highlight = cms_get_valCheckbox('prd_highlight', 'id');
+    var $seoDescription = $.trim($('#seo_description').val());
+    var $seoKeywords = $.trim($('#seo_keyword').val());
     if ($name.length == 0) {
         $('.ajax-error-ct').html('Vui lòng nhập tên sản phẩm.').parent().fadeIn().delay(1000).fadeOut('slow');
     } else {
@@ -1578,6 +1580,8 @@ function cms_add_product(type) {
             'is_new': $new,
             'is_hot': $hot,
             'is_feature': $highlight,
+            'seo_description': $seoDescription,
+            'seo_keyword': $seoKeywords,
             'add_update' : 1
         };
         var form_data = new FormData();
@@ -1643,7 +1647,8 @@ function cms_update_product($id) {
     var $new = cms_get_valCheckbox('prd_new', 'id');
     var $hot = cms_get_valCheckbox('prd_hot', 'id');
     var $highlight = cms_get_valCheckbox('prd_highlight', 'id');
-    
+    var $seoDescription = $.trim($('#seo_description').val());
+    var $seoKeywords = $.trim($('#seo_keyword').val());
     var $data = {
         'id' : $id,
         'name': $name,
@@ -1659,6 +1664,8 @@ function cms_update_product($id) {
         'is_new': $new,
         'is_hot': $hot,
         'is_feature': $highlight,
+        'seo_description': $seoDescription,
+        'seo_keyword': $seoKeywords,
         'add_update' : 1,
     };
     var form_data = new FormData();

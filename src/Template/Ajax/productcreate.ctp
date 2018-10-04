@@ -244,6 +244,16 @@ endif;
                                         class="checkbox"><input type="checkbox" class="checkbox"
                                                             id="prd_hot" value="1" <?php echo!empty($product['is_hot']) ? 'checked' : ''; ?>><span></span> Đang bán chạy</label>
                                 </div>
+                                <div class="form-group">
+                                    <label>Seo description</label>
+                                    <input type="text" id="seo_description" value="<?php echo !empty($product['seo_description']) ? $product['seo_description'] : ''; ?>"
+                                           class="form-control" placeholder="Seo description"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Seo keywords</label>
+                                    <input type="text" id="seo_keyword" value="<?php echo !empty($product['seo_keyword']) ? $product['seo_keyword'] : ''; ?>"
+                                           class="form-control" placeholder="Seo keywords"/>
+                                </div>
                             </div>
                             <div class="btn-groups pull-right" style="margin-top: 15px;">
                                 <button type="button" class="btn btn-primary" onclick="<?php echo (!empty($isUpdate) && !empty($product['id'])) ? "cms_update_product({$product['id']})" : "cms_add_product( 'save' )"; ?>;"><i
