@@ -43,7 +43,7 @@
             minLength: 1,
             source: '<?php echo $BASE_URL;?>/ajax/productautocomplete/',
             focus: function (event, ui) {
-                $("#search-pro-box").val(ui.item.prd_code);
+                $("#search-pro-box").val(ui.item.code);
                 return false;
             },
             select: function (event, ui) {

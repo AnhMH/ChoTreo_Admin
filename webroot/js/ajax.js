@@ -2343,7 +2343,10 @@ function cms_save_orders(type) {
                     } else if (type == 2) {
                         cms_print_order_in_create(1, data);
                     } else if (type == 3) {
-                        location.reload();
+                        $('.ajax-success-ct').html('Đã lưu thành công đơn hàng.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
+                        setTimeout(function () {
+                            location.reload();
+                        }, ajaxAlertDelay);
                     } else if (type == 4) {
                         cms_print_order_in_pos(1, data);
                     }

@@ -7,11 +7,11 @@ use Cake\Event\Event;
 /**
  * Login page
  */
-class OrdersController extends AppController {
+class PosController extends AppController {
     /**
      * List orders
      */
     public function index() {
-        include ('Bus/Orders/index.php');
+        include ('Bus/Pos/index.php');
     }
 }

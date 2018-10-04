@@ -1071,3 +1071,6 @@ button, input, optgroup, select, textarea {
         padding-left: 0;
     }
 }
+section#pos div.main-content {
+    padding-left: 0;
+}
