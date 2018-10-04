@@ -1,4 +1,4 @@
-<?php $option = 0; ?>
+<?php $option = !empty($param['option1']) ? $param['option1'] : 0; ?>
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -10,7 +10,7 @@
                 <option value="0">Khách hàng</option>
                 <?php if (!empty($customers)): ?>
                 <?php foreach ($customers as $item) : ?>
-                    <option <?php echo (!empty($param['customer_id']) && ($item['id'] == $customer_id)) ? 'selected ' : ''; ?>
+                    <option <?php echo (!empty($param['customer_id']) && ($item['id'] == $param['customer_id'])) ? 'selected ' : ''; ?>
                         value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
                 <?php endforeach; ?>
                 <?php endif; ?>
@@ -46,13 +46,13 @@
                 <td class="text-center" style="color: #2a6496; cursor: pointer;" onclick="cms_detail_order(<?php echo $item['id']; ?>)"><?php echo $item['code']; ?></td>
                 <td class="text-center"><?php echo !empty($item['created']) ? date('Y-m-d H:i', $item['created']) : ''; ?></td>
                 <td class="text-center"><?php echo !empty($item['customer_name']) ? $item['customer_name'] : '-'; ?></td>
-                <td class="text-center"><?php echo $item['status']; ?></td>
+                <td class="text-center"><?php echo !empty($orderStatus[$item['status']]) ? $orderStatus[$item['status']] : '-'; ?></td>
                 <td class="text-center" style="background-color: #F2F2F2;"><?php echo $item['total_price']; ?></td>
                 <td class="text-center" style="background: #fff;"><?php echo $item['lack']; ?></td>
                 <td class="text-center" style="background: #fff;">
-                    <i title="In" onclick="cms_print_order(1,<?php echo $item['id']; ?>)"
+<!--                    <i title="In" onclick="cms_print_order(1,<?php echo $item['id']; ?>)"
                        class="fa fa-print blue"
-                       style="margin-right: 5px;"></i>
+                       style="margin-right: 5px;"></i>-->
                     <i class="fa fa-trash-o" style="color: darkred;" title="<?php if ($option == 1)
                         echo 'Xóa vĩnh viễn';
                     else
@@ -186,10 +186,10 @@
 <div class="alert alert-info summany-info clearfix" role="alert">
     <div class="sm-info pull-left padd-0">
         Tổng số hóa đơn: <span><?php echo $total; ?></span>
-        Tổng tiền:
-        <span><?php echo 0; ?></span>
+<!--        Tổng tiền:
+        <span><?php echo $totalPrice; ?></span>
         Tổng nợ:
-        <span><?php echo 0; ?></span>
+        <span><?php echo $totalLack; ?></span>-->
     </div>
     <div class="pull-right ajax-pagination">
         <?php echo $this->Paginate->render($total, $limit, 'cms_paging_order', $page); ?>

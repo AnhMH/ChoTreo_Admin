@@ -10,13 +10,13 @@
                 <div class="right-action text-right">
                     <div class="btn-groups">
                         <button type="button" class="btn btn-primary"  onclick="cms_save_orders(0)">
-                            <i class="fa fa-floppy-o"></i> Lưu tạm
+                            <i class="fa fa-floppy-o"></i> Khởi tạo
                         </button>
                         <button type="button" class="btn btn-primary"  onclick="cms_save_orders(1)"><i
                                 class="fa fa-check"></i> Lưu
                         </button>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_orders(2)"><i class="fa fa-print"></i> Lưu và in
-                        </button>
+<!--                        <button type="button" class="btn btn-primary"  onclick="cms_save_orders(2)"><i class="fa fa-print"></i> Lưu và in
+                        </button>-->
                         <a href="/orders">
                             <button type="button" class="btn-back btn btn-default"><i class="fa fa-arrow-left"></i> Hủy
                             </button>
@@ -211,13 +211,13 @@
                 <div class="col-md-12">
                     <div class="btn-groups pull-right" style="margin-bottom: 50px;">
                         <button type="button" class="btn btn-primary"  onclick="cms_save_orders(0)">
-                            <i class="fa fa-floppy-o"></i> Lưu tạm
+                            <i class="fa fa-floppy-o"></i> Khởi tạo
                         </button>
                         <button type="button" class="btn btn-primary"  onclick="cms_save_orders(1)"><i
                                 class="fa fa-check"></i> Lưu
                         </button>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_orders(2)"><i class="fa fa-print"></i> Lưu và in
-                        </button>
+<!--                        <button type="button" class="btn btn-primary"  onclick="cms_save_orders(2)"><i class="fa fa-print"></i> Lưu và in
+                        </button>-->
                         <a href="/orders">
                             <button type="button" class="btn-back btn btn-default"><i class="fa fa-arrow-left"></i> Hủy
                             </button>

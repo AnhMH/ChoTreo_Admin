@@ -176,4 +176,20 @@ class AjaxController extends AppController {
     public function orderselectproduct() {
         include ('Bus/Ajax/orderselectproduct.php');
     }
+    
+    /**
+     * Order disable
+     */
+    public function orderdisable() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/orderdisable.php');
+    }
+    
+    /**
+     * Order delete
+     */
+    public function orderdel() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/orderdel.php');
+    }
 }

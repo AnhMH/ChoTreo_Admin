@@ -228,6 +228,10 @@ Configure::write('Config.searchStatus', array(
     0 => __('LABEL_ACTIVE'),
     1 => __('LABEL_INACTIVE'),
 ));
+Configure::write('Config.orderStatus', array(
+    0 => 'Khởi tạo',
+    1 => 'Hoàn thành',
+));
 
 if ($env == 'production') {
     define('VERSION_DATE', date('Ymd'));

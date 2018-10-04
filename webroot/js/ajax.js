@@ -2359,14 +2359,17 @@ function cms_del_temp_order($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'orders/cms_del_temp_order/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/orderdisable/',
+            'data': {
+                'id': $id,
+                'disable': 1
+            },
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 1) {
                     cms_paging_order($page);
-                    $('.ajax-success-ct').html('Xóa đơn hàng thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-success-ct').html('Xóa đơn hàng thành công.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 } else if (data == '0') {
-                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
@@ -2379,10 +2382,10 @@ function cms_del_order($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'orders/cms_del_order/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/orderdel/',
+            'data': {'id' : $id},
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 1) {
                     cms_paging_order($page);
                     $('.ajax-success-ct').html('Xóa đơn hàng vĩnh viễn thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                 } else if (data == '0') {
