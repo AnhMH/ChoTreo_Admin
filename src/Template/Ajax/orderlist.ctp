@@ -44,7 +44,7 @@
                     </i>
                 </td>
                 <td class="text-center" style="color: #2a6496; cursor: pointer;" onclick="cms_detail_order(<?php echo $item['id']; ?>)"><?php echo $item['code']; ?></td>
-                <td class="text-center"><?php echo !empty($item['created']) ? date('Y-m-d', $item['created']) : ''; ?></td>
+                <td class="text-center"><?php echo !empty($item['created']) ? date('Y-m-d H:i', $item['created']) : ''; ?></td>
                 <td class="text-center"><?php echo !empty($item['customer_name']) ? $item['customer_name'] : '-'; ?></td>
                 <td class="text-center"><?php echo $item['status']; ?></td>
                 <td class="text-center" style="background-color: #F2F2F2;"><?php echo $item['total_price']; ?></td>
@@ -131,6 +131,7 @@
                                     <thead>
                                     <tr role="row">
                                         <th class="text-center">STT</th>
+                                        <th class="text-left">Hình</th>
                                         <th class="text-left hidden-768">Mã sản phẩm</th>
                                         <th class="text-left">Tên sản phẩm</th>
                                         <th class="text-center">Số lượng</th>
@@ -147,6 +148,9 @@
                                         <tr>
                                             <td class="text-center width-5 hidden-320 ">
                                                 <?php echo $queue++; ?>
+                                            </td>
+                                            <td class="text-left zoomin">
+                                                <?php echo !empty($product['image']) ? "<img src='{$product['image']}' alt='{$product['name']}' />" : ""; ?>
                                             </td>
                                             <td class="text-left hidden-768">
                                                 <?php echo $product['code']; ?>

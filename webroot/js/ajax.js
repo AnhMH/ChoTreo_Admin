@@ -1960,7 +1960,7 @@ function cms_edit_product($id) {
 function cms_vsell_order() {
     var $param = {
         'type': 'POST',
-        'url': 'orders/cms_vsell_order/',
+        'url': BASE_URL + '/ajax/ordercreate/',
         'data': null,
         'callback': function (data) {
             $('.orders').html(data);
@@ -2152,8 +2152,8 @@ function cms_search_box_customer() {
         } else {
             var $param = {
                 'type': 'POST',
-                'url': 'orders/cms_search_box_customer/',
-                'data': {'data': {'keyword': $key}},
+                'url': BASE_URL + '/ajax/customerautocomplete/',
+                'data': {'keyword': $key},
                 'callback': function (data) {
                     if (data.length != 0) {
                         $('.search-cys-inner').html(data);
@@ -2209,7 +2209,7 @@ function cms_select_product_sell($id) {
             var $seq = parseInt($('td.seq').last().text()) + 1;
             var $param = {
                 'type': 'POST',
-                'url': 'orders/cms_select_product/',
+                'url': BASE_URL + '/ajax/orderselectproduct/',
                 'data': {'id': $id, 'seq': $seq},
                 'callback': function (data) {
                     $('#pro_search_append').append(data);
@@ -2221,7 +2221,7 @@ function cms_select_product_sell($id) {
     } else {
         var $param = {
             'type': 'POST',
-            'url': 'orders/cms_select_product/',
+            'url': BASE_URL + '/ajax/orderselectproduct/',
             'data': {'id': $id, 'seq': 1},
             'callback': function (data) {
                 $('#pro_search_append').append(data);
@@ -2304,7 +2304,7 @@ function cms_save_orders(type) {
             $id = $(this).attr('data-id');
             $value_input = $(this).find('input.quantity_product_order').val();
             $detail.push(
-                {id: $id, quantity: $value_input, price: 0, discount: 0}
+                {id: $id, qty: $value_input, price: 0, discount: 0}
             );
         });
         if (type == "0")
@@ -2313,26 +2313,24 @@ function cms_save_orders(type) {
             $order_status = 1;
 
         $data = {
-            'data': {
-                'sale_id': $sale_id,
-                'customer_id': $customer_id,
-                'sell_date': $date,
-                'notes': $note,
-                'payment_method': $payment_method,
-                'coupon': $discount,
-                'customer_pay': $customer_pay,
-                'detail_order': $detail,
-                'order_status': $order_status
-            }
+            'customer_id': $customer_id,
+            'created': $date,
+            'notes': $note,
+            'payment_method': $payment_method,
+            'coupon': $discount,
+            'customer_pay': $customer_pay,
+            'detail_order': $detail,
+            'status': $order_status,
+            'add_update': 1
         };
 
         var $param = {
             'type': 'POST',
-            'url': 'orders/cms_save_orders/' + $store_id,
+            'url': BASE_URL + '/ajax/ordercreate/',
             'data': $data,
             'callback': function (data) {
-                if (data == '0') {
-                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(1000).fadeOut('slow');
+                if (!(data > 1)) {
+                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(1000).fadeOut('slow');
                 } else {
                     if (type == 1) {
                         $('.ajax-success-ct').html('Đã lưu thành công đơn hàng.').parent().fadeIn().delay(1000).fadeOut('slow');
@@ -2919,7 +2917,7 @@ function cms_load_infor_order() {
     });
     $('div.total-money').text(cms_encode_currency_format($total_money));
 
-    if ($('input.discount-order').val() == '')
+    if ($('input.discount-order').val() == '' || $('input.discount-order').val() == 0)
         $discount = 0;
     else
         $discount = cms_decode_currency_format($('input.discount-order').val());
@@ -2991,10 +2989,12 @@ function is_match(pass1, pass2) {
 
 function cms_set_current_week() {
     var curr = new Date;
+    var f = new Date;
+    var l = new Date;
     var first = curr.getDate() - curr.getDay();
     var last = first + 6;
-    var firstday = new Date(curr.setDate(first)).toISOString().split('T')[0];
-    var lastday = new Date(curr.setDate(last)).toISOString().split('T')[0];
+    var firstday = new Date(f.setDate(first)).toISOString().split('T')[0];
+    var lastday = new Date(l.setDate(last)).toISOString().split('T')[0];
     $('#search-date-from').val(firstday);
     $('#search-date-to').val(lastday);
 }

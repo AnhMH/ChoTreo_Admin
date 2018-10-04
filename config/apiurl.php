@@ -32,9 +32,11 @@ Configure::write('API.url_customers_list', 'customers/list');
 Configure::write('API.url_customers_addupdate', 'customers/addupdate');
 Configure::write('API.url_customers_detail', 'customers/detail');
 Configure::write('API.url_customers_delete', 'customers/delete');
+Configure::write('API.url_customers_autocomplete', 'customers/autocomplete');
 
 Configure::write('API.url_products_list', 'products/list');
 Configure::write('API.url_products_addupdate', 'products/addupdate');
 Configure::write('API.url_products_detail', 'products/detail');
 Configure::write('API.url_products_delete', 'products/delete');
 Configure::write('API.url_products_disable', 'products/disable');
+Configure::write('API.url_products_autocomplete', 'products/autocomplete');

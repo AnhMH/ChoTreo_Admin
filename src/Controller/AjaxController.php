@@ -46,6 +46,13 @@ class AjaxController extends AppController {
     }
     
     /**
+     * Customer auto complete
+     */
+    public function customerautocomplete() {
+        include ('Bus/Ajax/customerautocomplete.php');
+    }
+    
+    /**
      * Supplier list
      */
     public function supplierlist($page) {
@@ -113,6 +120,13 @@ class AjaxController extends AppController {
     }
     
     /**
+     * Product autocomplete
+     */
+    public function productautocomplete() {
+        include ('Bus/Ajax/productautocomplete.php');
+    }
+    
+    /**
      * Cate all
      */
     public function cateall() {
@@ -147,5 +161,19 @@ class AjaxController extends AppController {
      */
     public function orderlist($page) {
         include ('Bus/Ajax/orderlist.php');
+    }
+    
+    /**
+     * Order create
+     */
+    public function ordercreate() {
+        include ('Bus/Ajax/ordercreate.php');
+    }
+    
+    /**
+     * Order select product
+     */
+    public function orderselectproduct() {
+        include ('Bus/Ajax/orderselectproduct.php');
     }
 }
