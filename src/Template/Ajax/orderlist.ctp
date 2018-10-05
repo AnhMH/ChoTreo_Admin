@@ -53,6 +53,8 @@
 <!--                    <i title="In" onclick="cms_print_order(1,<?php echo $item['id']; ?>)"
                        class="fa fa-print blue"
                        style="margin-right: 5px;"></i>-->
+                    <i title="Sửa" onclick="cms_vsell_order(<?php echo $item['id']; ?>)" class="fa fa-pencil-square-o" style="margin-right: 5px;"></i>
+                   
                     <i class="fa fa-trash-o" style="color: darkred;" title="<?php if ($option == 1)
                         echo 'Xóa vĩnh viễn';
                     else

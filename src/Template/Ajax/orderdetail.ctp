@@ -15,8 +15,8 @@
                                     class="fa fa-plus"></i> Tạo đơn hàng mới
                             </button>
                             <button type="button" class="btn btn-primary"
-                                    onclick="cms_print_order(1,<?php echo $order['id']; ?>)"><i
-                                    class="fa fa-print"></i> In đơn hàng
+                                    onclick="cms_vsell_order(<?php echo $order['id']; ?>)"><i
+                                    class="fa fa-pencil-square-o"></i> Sửa
                             </button>
                             <button type="button" class="btn btn-default"
                                     onclick="cms_javascript_redirect( cms_javascrip_fullURL() )"><i

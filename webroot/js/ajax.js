@@ -1957,10 +1957,13 @@ function cms_edit_product($id) {
 
 /*========================== ORDER ============================*/
 
-function cms_vsell_order() {
+function cms_vsell_order($id) {
+    if (typeof $id == 'undefined') {
+        $id = '';
+    }
     var $param = {
         'type': 'POST',
-        'url': BASE_URL + '/ajax/ordercreate/',
+        'url': BASE_URL + '/ajax/ordercreate/' + $id,
         'data': null,
         'callback': function (data) {
             $('.orders').html(data);
@@ -2286,7 +2289,7 @@ function cms_selected_mas($id) {
     $('#mas-suggestion-box').hide();
 }
 
-function cms_save_orders(type) {
+function cms_save_orders(type, $oid) {
     if ($('tbody#pro_search_append tr').length == 0) {
         $('.ajax-error-ct').html('Xin vui lòng chọn ít nhất 1 sản phẩm cần xuất trước khi lưu đơn hàng. Xin cảm ơn!').parent().fadeIn().delay(1000).fadeOut('slow');
     } else {
@@ -2313,6 +2316,7 @@ function cms_save_orders(type) {
             $order_status = 1;
 
         $data = {
+            'id': $oid,
             'customer_id': $customer_id,
             'created': $date,
             'notes': $note,
@@ -2332,7 +2336,7 @@ function cms_save_orders(type) {
                 if (!(data > 1)) {
                     $('.ajax-error-ct').html(data).parent().fadeIn().delay(1000).fadeOut('slow');
                 } else {
-                    if (type == 1) {
+                    if (type == 1 || $oid > 0) {
                         $('.ajax-success-ct').html('Đã lưu thành công đơn hàng.').parent().fadeIn().delay(1000).fadeOut('slow');
                         setTimeout(function () {
                             $('.btn-back').delay('1000').trigger('click');

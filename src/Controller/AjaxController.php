@@ -166,7 +166,7 @@ class AjaxController extends AppController {
     /**
      * Order create
      */
-    public function ordercreate() {
+    public function ordercreate($id = 0) {
         include ('Bus/Ajax/ordercreate.php');
     }
     
