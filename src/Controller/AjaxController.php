@@ -192,4 +192,11 @@ class AjaxController extends AppController {
         $this->autoRender = false;
         include ('Bus/Ajax/orderdel.php');
     }
+    
+    /**
+     * Order detail
+     */
+    public function orderdetail($id) {
+        include ('Bus/Ajax/orderdetail.php');
+    }
 }

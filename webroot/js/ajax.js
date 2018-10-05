@@ -2443,8 +2443,8 @@ function cms_del_input_in_supplier($id, $page) {
 function cms_detail_order($id) {
     var $param = {
         'type': 'POST',
-        'url': 'orders/cms_detail_order/',
-        'data': {'id': $id},
+        'url': BASE_URL + '/ajax/orderdetail/' + $id,
+        'data': null,
         'callback': function (data) {
             $('.orders').html(data);
         }
