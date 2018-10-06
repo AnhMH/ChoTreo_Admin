@@ -9,5 +9,6 @@ $result = Api::call(Configure::read('API.url_products_detail'), $param);
 $data = $result['product'];
 $this->set(compact(
     'data',
-    'param'
+    'param',
+    'type'
 ));

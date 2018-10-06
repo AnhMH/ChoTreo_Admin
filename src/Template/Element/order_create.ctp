@@ -49,7 +49,7 @@
                 return false;
             },
             select: function (event, ui) {
-                cms_select_product_sell(ui.item.id);
+                cms_select_product_sell(ui.item.id, '<?php echo !empty($type) && $type == 'import' ? 'import' : '0'; ?>');
                 $("#search-pro-box").val('');
                 return false;
             }

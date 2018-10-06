@@ -180,7 +180,7 @@ class AjaxController extends AppController {
     /**
      * Order select product
      */
-    public function orderselectproduct() {
+    public function orderselectproduct($type = '') {
         include ('Bus/Ajax/orderselectproduct.php');
     }
     

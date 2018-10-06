@@ -7,10 +7,10 @@
     <td class="text-center" style="max-width: 30px;">
         <input style="max-height: 22px;" type="text" class="txtNumber form-control quantity_product_order text-center" value="1">
     </td>
-    <td class="text-center price-order"><?php echo number_format($data['sell_price']); ?></td>
+    <td class="text-center price-order"><?php echo !empty($type) ? number_format($data['origin_price']) : number_format($data['sell_price']); ?></td>
     <td style="display: none;"
-        class="text-center price-order-hide"><?php echo $data['sell_price']; ?></td>
-    <td class="text-center total-money"><?php echo $data['sell_price']; ?></td>
+        class="text-center price-order-hide"><?php echo !empty($type) ? $data['origin_price'] : $data['sell_price']; ?></td>
+    <td class="text-center total-money"><?php echo !empty($type) ? $data['origin_price'] : $data['sell_price']; ?></td>
     <td class="text-center"><i class="fa fa-trash-o del-pro-order"></i></td>
 </tr>
 <?php endif; ?>
