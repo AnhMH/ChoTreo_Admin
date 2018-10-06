@@ -199,4 +199,18 @@ class AjaxController extends AppController {
     public function orderdetail($id) {
         include ('Bus/Ajax/orderdetail.php');
     }
+    
+    /**
+     * Import list
+     */
+    public function importlist($page) {
+        include ('Bus/Ajax/importlist.php');
+    }
+    
+    /**
+     * Import create
+     */
+    public function importcreate($id = '') {
+        include ('Bus/Ajax/importcreate.php');
+    }
 }

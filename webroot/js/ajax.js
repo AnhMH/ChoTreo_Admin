@@ -2498,10 +2498,13 @@ function cms_detail_input_in_supplier($id) {
 }
 
 /*=================== Module Imports ===========================*/
-function cms_vsell_import() {
+function cms_vsell_import($id) {
+    if (typeof $id == 'undefined') {
+        $id = '';
+    }
     var $param = {
         'type': 'POST',
-        'url': 'import/cms_vsell_import/',
+        'url': BASE_URL + '/ajax/importcreate/' + $id,
         'data': null,
         'callback': function (data) {
             $('.orders').html(data);
@@ -2836,10 +2839,15 @@ function cms_paging_input($page) {
     //$option3 = $('#search-option-3').val();
     $date_from = $('#search-date-from').val();
     $date_to = $('#search-date-to').val();
-    $data = {'data': {'option1': $option1, 'keyword': $keyword, 'date_from': $date_from, 'date_to': $date_to}};
+    $data = {
+        'option1': $option1, 
+        'keyword': $keyword, 
+        'date_from': $date_from, 
+        'date_to': $date_to
+    };
     var $param = {
         'type': 'POST',
-        'url': 'import/cms_paging_input/' + $page,
+        'url': BASE_URL + '/ajax/importlist/' + $page,
         'data': $data,
         'callback': function (data) {
             $('.imports-main-body').html(data);

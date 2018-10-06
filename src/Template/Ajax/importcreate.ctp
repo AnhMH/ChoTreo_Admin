@@ -1,8 +1,8 @@
 <?php 
 $data = array(
-    'type' => 'orders',
+    'type' => 'import',
     'order' => !empty($order) ? $order : array(),
     'id' => !empty($id) ? $id : '',
-    'title' => 'đơn hàng'
+    'title' => 'phiếu nhập'
 );
 echo $this->element('order_create', $data);
