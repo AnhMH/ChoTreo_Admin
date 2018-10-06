@@ -6,7 +6,7 @@
         <th class="text-center">Mã phiếu nhập</th>
         <th class="text-center">Ngày nhập</th>
         <th class="text-center" style="padding: 0px;">
-            <select style="text-align:center;" id="customer-id">
+            <select style="text-align:center;" id="supplier-id">
                 <option value="0">Nhà cung cấp</option>
                 <?php if (!empty($suppliers)): ?>
                 <?php foreach ($suppliers as $item) : ?>
@@ -41,7 +41,7 @@
                        class="fa fa-minus-circle i-hide i-detail-order-<?php echo $item['id']?>">
                     </i>
                 </td>
-                <td class="text-center" style="color: #2a6496; cursor: pointer;" onclick="cms_detail_order(<?php echo $item['id']; ?>)"><?php echo $item['code']; ?></td>
+                <td class="text-center" style="color: #2a6496; cursor: pointer;" onclick="cms_edit_import(<?php echo $item['id']; ?>)"><?php echo $item['code']; ?></td>
                 <td class="text-center"><?php echo !empty($item['created']) ? date('Y-m-d H:i', $item['created']) : ''; ?></td>
                 <td class="text-center"><?php echo !empty($item['supplier_name']) ? $item['supplier_name'] : '-'; ?></td>
                 <td class="text-center" style="background-color: #F2F2F2;"><?php echo $item['total_price']; ?></td>
@@ -57,9 +57,9 @@
                     else
                         echo 'Xóa'?>"
                        onclick="<?php if ($option == 1)
-                           echo 'cms_del_order';
+                           echo 'cms_del_import';
                        else
-                           echo 'cms_del_temp_order'?>(<?php echo $item['id'] . ',' . $page; ?>)"></i>
+                           echo 'cms_del_temp_import'?>(<?php echo $item['id'] . ',' . $page; ?>)"></i>
                 </td>
                 <td class="text-center">
                     <label class="checkbox" style="margin: 0;">

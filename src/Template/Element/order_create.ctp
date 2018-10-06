@@ -10,11 +10,11 @@
                 <div class="right-action text-right">
                     <div class="btn-groups">
                         <?php if (empty($id)): ?>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo $id; ?>)">
+                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo !empty($id) ? $id : 0; ?>)">
                             <i class="fa fa-floppy-o"></i> Khởi tạo
                         </button>
                         <?php endif; ?>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(<?php echo isset($order['status']) ? $order['status'] : '1'; ?>, <?php echo $id; ?>)"><i
+                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(<?php echo isset($order['status']) ? $order['status'] : '1'; ?>, <?php echo !empty($id) ? $id : 0; ?>)"><i
                                 class="fa fa-check"></i> Lưu
                         </button>
 <!--                        <button type="button" class="btn btn-primary"  onclick="cms_save_orders(2)"><i class="fa fa-print"></i> Lưu và in
@@ -110,18 +110,21 @@
                         <div class="tab-contents" style="padding: 8px 6px;">
                             <div class="form-group marg-bot-10 clearfix">
                                 <div style="padding:0px" class="col-md-4">
-                                    <label>Khách hàng</label>
+                                    <label><?php echo !empty($type) && $type == 'import' ? 'Nhà cung cấp' : 'Khách hàng'; ?></label>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="col-md-10 padd-0" style="position: relative;">
-                                        <input id="search-box-cys" class="form-control" type="text" placeholder="Tìm khách hàng" style="border-radius: 3px 0 0 3px !important;" <?php echo !empty($order['customer_id']) ? "data-id='{$order['customer_id']}' value='{$order['customer_name']}'" : ""; ?>/>
-                                        <span style="color: red; position: absolute; right: 5px; top:5px;" class="del-cys" ></span>
-                                        <div id="cys-suggestion-box" style="border: 1px solid #444; display: none; overflow-y: auto;background-color: #fff; z-index: 2 !important; position: absolute; left: 0; width: 100%; padding: 5px 0px; max-height: 400px !important;">
-                                            <div class="search-cys-inner"></div>
+                                        <input id="search-box-<?php echo !empty($type) && $type == 'import' ? 'mas' : 'cys'; ?>" class="form-control" type="text" placeholder="Tìm <?php echo !empty($type) && $type == 'import' ? 'nhà cung cấp' : 'khách hàng'; ?>" style="border-radius: 3px 0 0 3px !important;" 
+                                            <?php echo !empty($order['customer_id']) ? "data-id='{$order['customer_id']}' value='{$order['customer_name']}'" : ""; ?>
+                                               <?php echo !empty($order['supplier_id']) ? "data-id='{$order['supplier_id']}' value='{$order['supplier_name']}'" : ""; ?>
+                                               />
+                                        <span style="color: red; position: absolute; right: 5px; top:5px;" class="del-<?php echo !empty($type) && $type == 'import' ? 'mas' : 'cys'; ?>" ></span>
+                                        <div id="<?php echo !empty($type) && $type == 'import' ? 'mas' : 'cys'; ?>-suggestion-box" style="border: 1px solid #444; display: none; overflow-y: auto;background-color: #fff; z-index: 2 !important; position: absolute; left: 0; width: 100%; padding: 5px 0px; max-height: 400px !important;">
+                                            <div class="search-<?php echo !empty($type) && $type == 'import' ? 'mas' : 'cys'; ?>-inner"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-2 padd-0">
-                                        <button type="button" data-toggle="modal" data-target="#create-cust" class="btn btn-primary" style="border-radius: 0 3px 3px 0; box-shadow: none; padding: 7px 11px;">+</button>
+                                        <button type="button" data-toggle="modal" data-target="#create-<?php echo !empty($type) && $type == 'import' ? 'sup' : 'cust'; ?>" class="btn btn-primary" style="border-radius: 0 3px 3px 0; box-shadow: none; padding: 7px 11px;">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +202,7 @@
                             </div>
                             <div class="form-group marg-bot-10 clearfix">
                                 <div class="col-md-4 padd-right-0">
-                                    <label>Khách đưa</label>
+                                    <label>Thanh toán</label>
                                 </div>
                                 <div class="col-md-8">
                                     <input type="text" value="<?php echo !empty($order['customer_pay']) ? $order['customer_pay'] : '0'; ?>"
@@ -221,16 +224,16 @@
                 <div class="col-md-12">
                     <div class="btn-groups pull-right" style="margin-bottom: 50px;">
                         <?php if (empty($id)): ?>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo $id; ?>)">
+                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo !empty($id) ? $id : 0; ?>)">
                             <i class="fa fa-floppy-o"></i> Khởi tạo
                         </button>
                         <?php endif; ?>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(<?php echo isset($order['status']) ? $order['status'] : '1'; ?>, <?php echo $id; ?>)"><i
+                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(<?php echo isset($order['status']) ? $order['status'] : '1'; ?>, <?php echo !empty($id) ? $id : 0; ?>)"><i
                                 class="fa fa-check"></i> Lưu
                         </button>
 <!--                        <button type="button" class="btn btn-primary"  onclick="cms_save_orders(2)"><i class="fa fa-print"></i> Lưu và in
                         </button>-->
-                        <a href="/orders">
+                        <a href="/<?php echo !empty($type) ? $type : 'orders';?>">
                             <button type="button" class="btn-back btn btn-default"><i class="fa fa-arrow-left"></i> Quay lại
                             </button>
                         </a>

@@ -154,6 +154,13 @@ function cms_func_common() {
             cms_load_infor_order();
         });
     }
+    
+    if (window.location.pathname.indexOf('import') !== -1) {
+        $('#supplier-id').on('change', function () {
+            cms_paging_input(1);
+        });
+    }
+       
 
     if (window.location.pathname.indexOf('pos') !== -1) {
         $("input.discount-order").keyup(function () {
@@ -2180,8 +2187,10 @@ function cms_search_box_sup() {
 
             var $param = {
                 'type': 'POST',
-                'url': 'import/cms_search_box_sup/' + $keyword,
-                'data': null,
+                'url': BASE_URL + '/ajax/supplierautocomplete/' + $keyword,
+                'data': {
+                    'keyword' : $keyword
+                },
                 'callback': function (data) {
                     if (data.length != 0) {
                         $('.search-mas-inner').html(data);
@@ -2283,7 +2292,7 @@ function cms_selected_cys($id) {
 }
 
 function cms_selected_mas($id) {
-    $name = $('li.data-cys-name-' + $id).text();
+    $name = $('li.data-mas-name-' + $id).text();
     $("#search-box-mas").prop('readonly', true).attr('data-id', $id).val($name);
     $(".del-mas").html('<i class="fa fa-minus-circle" aria-hidden="true"></i>');
     $('#mas-suggestion-box').hide();
@@ -2513,7 +2522,10 @@ function cms_vsell_import($id) {
     cms_adapter_ajax($param);
 }
 
-function cms_save_import(type) {
+function cms_save_import(type, $oid) {
+    if (typeof $oid == 'undefined') {
+        $oid = 0;
+    }
     if ($('tbody#pro_search_append tr').length == 0) {
         $('.ajax-error-ct').html('Xin vui lòng chọn ít nhất 1 sản phẩm cần xuất trước khi lưu hóa đơn nhập. Xin cảm ơn!').parent().fadeIn().delay(1000).fadeOut('slow');
     } else {
@@ -2522,15 +2534,15 @@ function cms_save_import(type) {
         $date = $('#date-order').val();
         $note = $('#note-order').val();
         $payment_method = $("input:radio[name ='method-pay']:checked").val();
-        $discount = cms_decode_currency_format($('input.discount-import').val());
+        $discount = cms_decode_currency_format($('input.discount-order').val());
         $khachdua = cms_decode_currency_format($('.customer-pay').val());
         $detail = [];
         $('tbody#pro_search_append tr').each(function () {
-            $price = cms_decode_currency_format($(this).find('input.price-order').val());
+//            $price = cms_decode_currency_format($(this).find('input.price-order').val());
             $id = $(this).attr('data-id');
-            $value_input = $(this).find('input.quantity_product_import').val();
+            $value_input = $(this).find('input.quantity_product_order').val();
             $detail.push(
-                {id: $id, quantity: $value_input, price: $price}
+                {id: $id, qty: $value_input, price: 0}
             );
         });
         if (type == "0")
@@ -2539,38 +2551,38 @@ function cms_save_import(type) {
             $input_status = 1;
 
         $data = {
-            'data': {
-                'supplier_id': $supplier_id,
-                'input_date': $date,
-                'notes': $note,
-                'payment_method': $payment_method,
-                'discount': $discount,
-                'payed': $khachdua,
-                'detail_input': $detail,
-                'input_status': $input_status
-            }
+            'id': $oid,
+            'supplier_id': $supplier_id,
+            'created': $date,
+            'notes': $note,
+            'payment_method': $payment_method,
+            'coupon': $discount,
+            'customer_pay': $khachdua,
+            'detail_order': $detail,
+            'status': $input_status,
+            'type': 1,
+            'add_update': 1
         };
 
         var $param = {
             'type': 'POST',
-            'url': 'import/cms_save_import/' + $store_id,
+            'url': BASE_URL + '/ajax/importcreate',
             'data': $data,
             'callback': function (data) {
-                if (data == '0') {
-                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(1000).fadeOut('slow');
-                } else {
+                if (data > 0) {
                     if (type == 1) {
-                        $('.ajax-success-ct').html('Đã lưu thành công phiếu nhập.').parent().fadeIn().delay(1000).fadeOut('slow');
+                        $('.ajax-success-ct').html('Đã lưu thành công phiếu nhập.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                         setTimeout(function () {
                             $('.btn-back').delay('1000').trigger('click');
                         }, 1000);
                     } else if (type == 0) {
-                        $('.ajax-success-ct').html('Đã lưu thành công phiếu nhập tạm.').parent().fadeIn().delay(1000).fadeOut('slow');
+                        $('.ajax-success-ct').html('Đã lưu thành công phiếu nhập tạm.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                         cms_vsell_import();
                     } else {
                         cms_print_input_in_create(3, data);
-
                     }
+                } else {
+                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 }
             }
         };
@@ -2601,10 +2613,13 @@ function cms_del_temp_import($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'import/cms_del_temp_import/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/orderdisable',
+            'data': {
+                'id' : $id,
+                'disable' : 1,
+            },
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     cms_paging_input($page);
                     $('.ajax-success-ct').html('Xóa phiếu nhập thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                 } else if (data == '0') {
@@ -2621,10 +2636,10 @@ function cms_del_import($id, $page) {
     if (conf) {
         var $param = {
             'type': 'POST',
-            'url': 'import/cms_del_import/' + $id,
-            'data': null,
+            'url': BASE_URL + '/ajax/orderdel',
+            'data': {'id': $id},
             'callback': function (data) {
-                if (data == '1') {
+                if (data > 0) {
                     cms_paging_input($page);
                     $('.ajax-success-ct').html('Xóa vĩnh viễn phiếu nhập thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
                 } else if (data == '0') {
@@ -2639,8 +2654,8 @@ function cms_del_import($id, $page) {
 function cms_edit_import($id) {
     var $param = {
         'type': 'POST',
-        'url': 'import/cms_edit_import/',
-        'data': {'id': $id},
+        'url': BASE_URL + '/ajax/importcreate/' + $id,
+        'data': null,
         'callback': function (data) {
             $('.orders').html(data);
         }
@@ -2839,11 +2854,16 @@ function cms_paging_input($page) {
     //$option3 = $('#search-option-3').val();
     $date_from = $('#search-date-from').val();
     $date_to = $('#search-date-to').val();
+    $supplier_id = 0;
+
+    if ($('#supplier-id').val() != null)
+        $supplier_id = $('#supplier-id').val();
     $data = {
         'option1': $option1, 
         'keyword': $keyword, 
         'date_from': $date_from, 
-        'date_to': $date_to
+        'date_to': $date_to,
+        'supplier_id': $supplier_id
     };
     var $param = {
         'type': 'POST',

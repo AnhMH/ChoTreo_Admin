@@ -8,6 +8,7 @@ $param = array(
     'limit' => $limit,
     'page' => $page,
     'get_order_import' => 1,
+    'get_suppliers' => 1
 );
 $postParam = $this->request->data();
 if (!empty($postParam)) {
@@ -18,7 +19,7 @@ if (!empty($postParam)) {
 $result = Api::call(Configure::read('API.url_orders_list'), $param);
 $data = !empty($result['data']) ? $result['data'] : array();
 $total = !empty($result['total']) ? $result['total'] : 0;
-$customers = !empty($result['customers']) ? $result['customers'] : array();
+$suppliers = !empty($result['suppliers']) ? $result['suppliers'] : array();
 
 $orders = $data;
 $totalPrice = 0;
@@ -32,7 +33,7 @@ $this->set(compact(
     'limit',
     'page',
     'param',
-    'customers',
+    'suppliers',
     'totalPrice',
     'totalLack',
     'orderStatus'

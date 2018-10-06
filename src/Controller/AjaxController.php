@@ -68,6 +68,13 @@ class AjaxController extends AppController {
     }
     
     /**
+     * Supplier auto complete
+     */
+    public function supplierautocomplete() {
+        include ('Bus/Ajax/supplierautocomplete.php');
+    }
+    
+    /**
      * Supplier delete
      */
     public function supplierdel() {
@@ -210,7 +217,7 @@ class AjaxController extends AppController {
     /**
      * Import create
      */
-    public function importcreate($id = '') {
+    public function importcreate($id = 0) {
         include ('Bus/Ajax/importcreate.php');
     }
 }

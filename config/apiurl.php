@@ -15,6 +15,7 @@ Configure::write('API.url_suppliers_list', 'suppliers/list');
 Configure::write('API.url_suppliers_addupdate', 'suppliers/addupdate');
 Configure::write('API.url_suppliers_detail', 'suppliers/detail');
 Configure::write('API.url_suppliers_delete', 'suppliers/delete');
+Configure::write('API.url_suppliers_autocomplete', 'suppliers/autocomplete');
 
 Configure::write('API.url_orders_list', 'orders/list');
 Configure::write('API.url_orders_addupdate', 'orders/addupdate');
