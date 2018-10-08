@@ -178,7 +178,12 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="total-money">
-                                        <?php echo !empty($order['total_sell_price']) ? $order['total_sell_price'] : '0'; ?>
+                                        <?php if (!empty($type) && $type == 'import'): ?>
+                                            <?php echo !empty($order['total_origin_price']) ? $order['total_origin_price'] : '0'; ?>
+                                        <?php else: ?>
+                                            <?php echo !empty($order['total_sell_price']) ? $order['total_sell_price'] : '0'; ?>
+                                        <?php endif; ?>
+                                        
                                     </div>
                                 </div>
                             </div>

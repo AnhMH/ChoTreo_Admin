@@ -2573,7 +2573,7 @@ function cms_save_import(type, $oid) {
             'data': $data,
             'callback': function (data) {
                 if (data > 0) {
-                    if (type == 1) {
+                    if (type == 1 || $oid > 0) {
                         $('.ajax-success-ct').html('Đã lưu thành công phiếu nhập.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                         setTimeout(function () {
                             $('.btn-back').delay('1000').trigger('click');
