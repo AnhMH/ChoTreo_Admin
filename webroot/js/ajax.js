@@ -2667,23 +2667,17 @@ function cms_edit_import($id) {
 }
 
 function cms_paging_inventory($page) {
-    $store_id = $('#store-id').val();
     $keyword = $('.txt-sinventory').val();
-    $option1 = $('#prd_group_id').val()
-    $option2 = $('#prd_manufacture_id').val();
+    $cate_id = $('#prd_group_id').val()
     $option3 = $('#option_inventory').val();
     $data = {
-        'data': {
-            'keyword': $keyword,
-            'option1': $option1,
-            'option2': $option2,
-            'option3': $option3,
-            'store_id': $store_id
-        }
+        'keyword': $keyword,
+        'cate_id': $cate_id,
+        'option3': $option3
     };
     var $param = {
         'type': 'POST',
-        'url': 'inventory/cms_paging_inventory/' + $page,
+        'url': BASE_URL + '/ajax/inventorylist/' + $page,
         'data': $data,
         'callback': function (data) {
             $('.inventory-main-body').html(data);

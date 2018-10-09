@@ -220,4 +220,11 @@ class AjaxController extends AppController {
     public function importcreate($id = 0) {
         include ('Bus/Ajax/importcreate.php');
     }
+    
+    /**
+     * Inventory list
+     */
+    public function inventorylist($page) {
+        include ('Bus/Ajax/inventorylist.php');
+    }
 }

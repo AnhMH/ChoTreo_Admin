@@ -41,3 +41,4 @@ Configure::write('API.url_products_detail', 'products/detail');
 Configure::write('API.url_products_delete', 'products/delete');
 Configure::write('API.url_products_disable', 'products/disable');
 Configure::write('API.url_products_autocomplete', 'products/autocomplete');
+Configure::write('API.url_products_getinventory', 'products/getinventory');
