@@ -6,16 +6,22 @@ use Cake\Core\Configure;
 // Init param
 $param = $this->request->data();
 $order = array();
+$error = array();
 if (!empty($param['add_update'])) {
     if (!empty($param['detail_order'])) {
         $param['detail_order'] = json_encode($param['detail_order']);
     }
     // Call api
     $id = Api::call(Configure::read('API.url_orders_addupdate'), $param);
-    if (!empty($id) && !Api::getError()) {
+    $error = Api::getError();
+    if (!empty($id) && empty($error)) {
         echo $id;
     } else {
-        echo 0;
+        if (!empty($error)) {
+            echo Api::parseErrorMess($error);
+        } else {
+            echo 'Đã có lỗi xảy ra.';
+        }
     }
     exit();
 }

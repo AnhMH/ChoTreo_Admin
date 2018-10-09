@@ -2346,7 +2346,7 @@ function cms_save_orders(type, $oid) {
             'data': $data,
             'callback': function (data) {
                 if (!(data > 1)) {
-                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(1000).fadeOut('slow');
+                    $('.ajax-error-ct').html(data).parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
                 } else {
                     if (type == 1 || $oid > 0) {
                         $('.ajax-success-ct').html('Đã lưu thành công đơn hàng.').parent().fadeIn().delay(1000).fadeOut('slow');

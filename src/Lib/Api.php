@@ -165,5 +165,29 @@ class Api {
         }
         return $result;
     }
+    
+    /**
+     * Parse array errors mess
+     *    
+     * @author thailvn  
+     * @param array $apiErrors API error       
+     * @return array    
+     */
+    public static function parseErrorMess($apiErrors = array()) {
+        if (empty($apiErrors)) {
+            return false;
+        }
+        $result = '';
+        foreach ($apiErrors as $error) {
+            if (is_array($error)) {
+                foreach ($error as $err) {
+                    $result .= "<p>{$err}</p>";
+                }
+            } else {
+                $result .= "<p>{$error}</p>";
+            }
+        }
+        return $result;
+    }
 
 }

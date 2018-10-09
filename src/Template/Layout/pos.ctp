@@ -147,7 +147,7 @@
                                                         <div class="col-md-8">
                                                             <input type="text"
                                                                    class="form-control text-right txtMoney discount-order"
-                                                                   placeholder="0" style="border-radius: 0 !important;">
+                                                                   placeholder="0" value="0" style="border-radius: 0 !important;">
                                                         </div>
                                                     </div>
                                                     <div class="form-group marg-bot-10 clearfix">
@@ -231,7 +231,7 @@
             }
         }).autocomplete("instance")._renderItem = function (ul, item) {
             return $("<li>")
-                .append("<div>" + item.code + " - " + item.name + "</div>")
+                .append("<div>" + item.code + " - " + item.name + " - " + item.qty + "</div>")
                 .appendTo(ul);
         };
     });

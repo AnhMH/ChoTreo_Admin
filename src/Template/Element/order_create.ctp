@@ -55,7 +55,7 @@
             }
         }).autocomplete("instance")._renderItem = function (ul, item) {
             return $("<li>")
-                .append("<div>" + item.code + " - " + item.name + "</div>")
+                .append("<div>" + item.code + " - " + item.name + " - " + item.qty + "</div>")
                 .appendTo(ul);
         };
     });
