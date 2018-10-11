@@ -2,7 +2,7 @@ var ajaxAlertDelay = 3000;
 $(document).ready(function () {
     "use strict";
 
-    if (window.location.pathname.indexOf('dashboard') !== -1) {
+    if (controller == 'top') {
         $('li#dashboard').addClass('active');
     }
 
