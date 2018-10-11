@@ -60,7 +60,7 @@
                             <div class="form-group clearfix">
                                 <div class="col-md-6 padd-left-0">
                                     <label>Số lượng</label>
-                                    <input type="text" id="prd_sls" value="<?php echo (!empty($product['qty'])) ? $product['qty'] : '0'; ?>" placeholder="0"
+                                    <input type="text" id="prd_sls" <?php echo (!empty($isUpdate)) ? "disabled" : ""; ?> value="<?php echo (!empty($product['qty'])) ? $product['qty'] : '0'; ?>" placeholder="0"
                                            class="form-control text-right txtNumber"/>
                                 </div>
                                 <div class="col-md-6 padd-right-0">

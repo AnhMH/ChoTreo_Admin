@@ -187,10 +187,10 @@
                                                         onclick="cms_save_orders(3)"><i
                                                         class="fa fa-check"></i> Lưu (F9)
                                                 </button>
-                                                <button type="button" class="btn btn-primary"
+<!--                                                <button type="button" class="btn btn-primary"
                                                         onclick="cms_save_orders(4)"><i class="fa fa-print"></i> Lưu và
                                                     in (F10)
-                                                </button>
+                                                </button>-->
                                                 <a href="/orders">
                                                     <button type="button" class="btn-back btn btn-default"><i
                                                             class="fa fa-arrow-left"></i> Hủy

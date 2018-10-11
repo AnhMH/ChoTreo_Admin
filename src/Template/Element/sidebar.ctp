@@ -26,7 +26,7 @@
         <li id="profit"><a href="<?php echo $BASE_URL; ?>/profit"><i class="fa fa-usd"></i>Lợi nhuận</a></li>-->
 
 
-        <li id="config"><a href="<?php echo $BASE_URL; ?>/config"><i class="fa fa-cogs"></i>Thiết lập</a></li>
+        <!--<li id="config"><a href="<?php echo $BASE_URL; ?>/config"><i class="fa fa-cogs"></i>Thiết lập</a></li>-->
 
     </ul>
 </div>

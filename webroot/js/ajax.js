@@ -1136,8 +1136,11 @@ function cms_print_order_in_create($id_template, $id_order) {
 function cms_print_order_in_pos($id_template, $id_order) {
     var $param = {
         'type': 'POST',
-        'url': 'orders/cms_print_order',
-        'data': {'data': {'id_template': $id_template, 'id_order': $id_order}},
+        'url': BASE_URL + '/ajax/orderprint',
+        'data': {
+            'tempplate_id': $id_template, 
+            'order_id': $id_order
+        },
         'callback': function (data) {
             var restorepage = $('body').html();
             var printcontent = data;

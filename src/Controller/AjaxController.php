@@ -208,6 +208,13 @@ class AjaxController extends AppController {
     }
     
     /**
+     * Order print
+     */
+    public function orderprint() {
+        include ('Bus/Ajax/orderprint.php');
+    }
+    
+    /**
      * Import list
      */
     public function importlist($page) {
