@@ -13,39 +13,73 @@ if ($this->request->is('post')) {
         $data[$key] = trim($value);
     }
 
-    // Validation
-    if (empty($data['email'])) {
-        $this->Flash->error(__('MESSAGE_EMAIL_EMPTY'));
-        $check = false;
-    }
-    if (empty($data['password'])) {
-        $this->Flash->error(__('MESSAGE_PASSWORD_EMPTY'));
-        $check = false;
-    }
+    // Register
+    if (!empty($data['register'])) {
+        // Validation
+        if (empty($data['register_email'])) {
+            $check = false;
+        }
+        if (empty($data['register_name'])) {
+            $check = false;
+        }
+        if (empty($data['register_password'])) {
+            $check = false;
+        }
+        if ($check) {
+            $user = Api::call(Configure::read('API.url_admins_register'), $data);
+            $error = Api::getError();
+            if (!empty($error)) {
+                $this->Flash->error("Email {$data['register_email']} đã được đăng ký.");
+            } else {
+                // Auth
+                unset($user['password']);
 
-    // Call API to Login
-    if ($check) {
-        $user = Api::call(Configure::read('API.url_admins_login'), $data);
-        if (Api::getError() || empty($user)) {
-            $this->Flash->error(__('MESSAGE_LOGIN_FAIL'));
+                $user['is_admin'] = !empty($user['admin_type']) ? 1 : 0;
+                $user['display_name'] = !empty($user['name']) ? $user['name'] : $user['login_id'];
+                if (empty($user['avatar'])) {
+                    $user['avatar'] = $this->BASE_URL . '/img/' . Configure::read('default_avatar');
+                }
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
         } else {
-            // Auth
-            unset($user['password']);
+            $this->Flash->error('Đăng ký không thành công.');
+        }
+    } else {
+        // Validation
+        if (empty($data['email'])) {
+            $this->Flash->error(__('MESSAGE_EMAIL_EMPTY'));
+            $check = false;
+        }
+        if (empty($data['password'])) {
+            $this->Flash->error(__('MESSAGE_PASSWORD_EMPTY'));
+            $check = false;
+        }
 
-            $user['is_admin'] = !empty($user['admin_type']) ? 1 : 0;
-            $user['display_name'] = !empty($user['name']) ? $user['name'] : $user['login_id'];
-            if (empty($user['avatar'])) {
-                $user['avatar'] = $this->BASE_URL . '/img/' . Configure::read('default_avatar');
-            }
-            $this->Auth->setUser($user);
+        // Call API to Login
+        if ($check) {
+            $user = Api::call(Configure::read('API.url_admins_login'), $data);
+            if (Api::getError() || empty($user)) {
+                $this->Flash->error(__('MESSAGE_LOGIN_FAIL'));
+            } else {
+                // Auth
+                unset($user['password']);
 
-            // Did they select the remember me checkbox?
-            if (!empty($data['remembera'])) {
-                $data['admin_password'] = $data['password'];
-                unset($data['password']);
-                $this->Cookie->write($rememberAdminCookie, $data, true, '2 weeks');
+                $user['is_admin'] = !empty($user['admin_type']) ? 1 : 0;
+                $user['display_name'] = !empty($user['name']) ? $user['name'] : $user['login_id'];
+                if (empty($user['avatar'])) {
+                    $user['avatar'] = $this->BASE_URL . '/img/' . Configure::read('default_avatar');
+                }
+                $this->Auth->setUser($user);
+
+                // Did they select the remember me checkbox?
+                if (!empty($data['remembera'])) {
+                    $data['admin_password'] = $data['password'];
+                    unset($data['password']);
+                    $this->Cookie->write($rememberAdminCookie, $data, true, '2 weeks');
+                }
+                return $this->redirect($this->Auth->redirectUrl());
             }
-            return $this->redirect($this->Auth->redirectUrl());
         }
     }
 }
