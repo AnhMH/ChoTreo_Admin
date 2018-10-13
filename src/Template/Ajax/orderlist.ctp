@@ -59,9 +59,9 @@
                     else
                         echo 'Xóa'?>"
                        onclick="<?php if ($option == 1)
-                           echo 'cms_del_import';
+                           echo 'cms_del_order';
                        else
-                           echo 'cms_del_temp_import'?>(<?php echo $item['id'] . ',' . $page; ?>)"></i>
+                           echo 'cms_del_temp_order'?>(<?php echo $item['id'] . ',' . $page; ?>)"></i>
                 </td>
                 <td class="text-center">
                     <label class="checkbox" style="margin: 0;">
