@@ -7,14 +7,15 @@
             <th class="text-center">Khách hàng</th>
             <th class="text-center">Số lượng</th>
             <th class="text-center">Chiết khấu</th>
-            <th class="text-center" style="background-color: #fff;">Tổng tiền</th>
-            <th class="text-center"><i class="fa fa-clock-o"></i> Nợ</th>
+            <th class="text-center" style="background-color: #fff;">Doanh số</th>
+            <th class="text-center">Tiền vốn</th>
+            <th class="text-center">Lợi nhuận</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        if (!empty($revenue)) :
-            foreach ($revenue as $key => $item): ?>
+        if (!empty($profit)) :
+            foreach ($profit as $key => $item): ?>
                 <tr>
                     <td style="text-align: center;">
                         <i style="color: #478fca!important;" title="Chi tiết đơn hàng"
@@ -32,14 +33,18 @@
                     <td class="text-center"><?php echo !empty($item['customer_name']) ? $item['customer_name'] : '-'; ?></td>
                     <td class="text-center"><?php echo $item['total_qty']; ?></td>
                     <td class="text-center"><?php echo number_format($item['coupon']); ?></td>
-                    <td class="text-center" style="background-color: #F2F2F2;"><?php echo number_format($item['total_price']); ?></td>
-                    <td class="text-center" style="background: #fff;"><?php echo number_format($item['lack']); ?></td>
+                    <td class="text-center"
+                        style="background-color: #F2F2F2;"><?php echo number_format($item['total_price']); ?></td>
+                    <td class="text-center"
+                        style="background: #fff;"><?php echo number_format($item['total_origin_price']); ?></td>
+                    <td class="text-center"
+                        style="background: #fff;"><?php echo number_format($item['total_price'] - $item['total_origin_price']); ?></td>
                 </tr>
                 <?php echo $this->element('tr_order_detail', array('item' => $item)); ?>
             <?php
             endforeach;
         else :
-            echo '<tr><td colspan="9" class="text-center">Không có dữ liệu</td></tr>';
+            echo '<tr><td colspan="10" class="text-center">Không có dữ liệu</td></tr>';
         endif;
         ?>
     </tbody>

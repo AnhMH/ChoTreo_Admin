@@ -2764,25 +2764,17 @@ function cms_paging_revenue($page) {
 function cms_paging_profit($page) {
     $type = $('[name=profit]:checked').val();
     $option1 = $('#search-option-1').val();
-    $option2 = $('#search-option-2').val();
-    $option3 = $('#search-option-3').val();
-    $option4 = $('#search-option-4').val();
     $date_from = $('#search-date-from').val();
     $date_to = $('#search-date-to').val();
     $data = {
-        'data': {
-            'type': $type,
-            'option1': $option1,
-            'option2': $option2,
-            'option3': $option3,
-            'option4': $option4,
-            'date_from': $date_from,
-            'date_to': $date_to
-        }
+        'type': $type,
+        'customer_id': $option1,
+        'date_from': $date_from,
+        'date_to': $date_to
     };
     var $param = {
         'type': 'POST',
-        'url': 'profit/cms_paging_profit/' + $page,
+        'url': BASE_URL + '/ajax/profitlist/' + $page,
         'data': $data,
         'callback': function (data) {
             $('.profit-main-body').html(data);
