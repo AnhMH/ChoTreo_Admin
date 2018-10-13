@@ -46,8 +46,8 @@
                 <td class="text-center"><?php echo !empty($item['created']) ? date('Y-m-d H:i', $item['created']) : ''; ?></td>
                 <td class="text-center"><?php echo !empty($item['customer_name']) ? $item['customer_name'] : '-'; ?></td>
                 <td class="text-center"><?php echo !empty($orderStatus[$item['status']]) ? $orderStatus[$item['status']] : '-'; ?></td>
-                <td class="text-center" style="background-color: #F2F2F2;"><?php echo $item['total_price']; ?></td>
-                <td class="text-center" style="background: #fff;"><?php echo $item['lack']; ?></td>
+                <td class="text-center" style="background-color: #F2F2F2;"><?php echo number_format($item['total_price']); ?></td>
+                <td class="text-center" style="background: #fff;"><?php echo number_format($item['lack']); ?></td>
                 <td class="text-center" style="background: #fff;">
 <!--                    <i title="In" onclick="cms_print_order(1,<?php echo $item['id']; ?>)"
                        class="fa fa-print blue"

@@ -23,13 +23,13 @@
                         $item['phone'] : '-'; ?></td>
                 <td class="text-left"><?php echo (!empty($item['address'])) ? $item['address'] :
                         ''; ?></td>
-                <td class="text-center"><?php echo (!empty($item['input_date'])) ? $item['input_date'] :
+                <td class="text-center"><?php echo (!empty($item['order_created'])) ? date('H:i d/m/Y', $item['order_created']) :
                         '-'; ?></td>
                 <td class="text-right"
-                    style="font-weight: bold; background-color: #f9f9f9;"><?php echo (!empty($item['total_money'])) ? cms_encode_currency_format($item['total_money']) :
+                    style="font-weight: bold; background-color: #f9f9f9;"><?php echo (!empty($item['sum_total_price'])) ? number_format($item['sum_total_price']) :
                         '0'; ?>
                 </td>
-                <td class="text-right"><?php echo (!empty($item['total_debt'])) ? cms_encode_currency_format($item['total_debt']) :
+                <td class="text-right"><?php echo (!empty($item['total_lack'])) ? number_format($item['total_lack']) :
                         '0'; ?></td>
                 <td class="text-center"><i class="fa fa-trash-o" style="cursor:pointer;"
                                            onclick="cms_delsup(<?php echo $item['id'].','.$page; ?>);"></i></td>
@@ -45,8 +45,8 @@
 <div class="alert alert-info summany-info clearfix" role="alert">
     <div class="sm-info pull-left padd-0">
         Số NCC:<span><?php echo $total; ?></span>
-        Tổng tiền: <span><?php echo (isset($_total_supplier['total_money']) && !empty($_total_supplier['total_money'])) ? cms_encode_currency_format($_total_supplier['total_money']) : '0'; ?> đ</span>
-        Tổng nợ: <span><?php echo (isset($_total_supplier['total_debt']) && !empty($_total_supplier['total_debt'])) ? cms_encode_currency_format($_total_supplier['total_debt']) : '0'; ?> đ</span>
+        Tổng tiền: <span><?php echo (isset($_total_supplier['total_money']) && !empty($_total_supplier['total_money'])) ? number_format($_total_supplier['total_money']) : '0'; ?> đ</span>
+        Tổng nợ: <span><?php echo (isset($_total_supplier['total_debt']) && !empty($_total_supplier['total_debt'])) ? number_format($_total_supplier['total_debt']) : '0'; ?> đ</span>
     </div>
     <div class="pull-right ajax-pagination">
         <?php echo $this->Paginate->render($total, $limit, 'cms_paging_supplier', $page); ?>

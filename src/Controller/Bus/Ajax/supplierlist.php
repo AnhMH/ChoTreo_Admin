@@ -6,7 +6,8 @@ use Cake\Core\Configure;
 $limit = Configure::read('Config.PageSize');
 $param = array(
     'limit' => $limit,
-    'page' => $page
+    'page' => $page,
+    'get_order_data' => 1
 );
 $postParam = $this->request->data();
 if (!empty($postParam)) {
