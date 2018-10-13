@@ -99,7 +99,7 @@
                                 <div class="col-md-6 padd-left-0">
                                     <label>Danh mục</label>
 
-                                    <div class="col-md-11 padd-0">
+                                    <div class="<?php echo $vipType == 99 ? 'col-md-11' : 'col-md-12';?> padd-0">
                                         <select class="form-control" id="prd_group_id">
                                             <option value="0" selected="selected">--Danh mục--</option>
                                             <optgroup label="Chọn danh mục">
@@ -115,17 +115,21 @@
                                                     endif;
                                                     ?>
                                             </optgroup>
+                                            <?php if ($vipType == 99): ?>
                                             <optgroup label="------------------------">
                                                 <option value="product_group" data-toggle="modal" data-target="#list-prd-group">Tạo mới danh mục</option>
                                             </optgroup>
+                                            <?php endif; ?>
                                         </select>
                                     </div>
+                                    <?php if ($vipType == 99): ?>
                                     <div class="col-md-1 padd-0">
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#list-prd-group"
                                                 style="border-radius: 0 3px 3px 0; box-shadow: none;">...
                                         </button>
                                     </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

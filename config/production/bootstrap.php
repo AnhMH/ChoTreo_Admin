@@ -14,3 +14,5 @@ Configure::write('Config.CKeditor', array(
     'basel_dir'=>'/var/www/img/uploads/',
     'basel_url'=>'https://ameeplus.com/img/uploads/'
 ));
+
+Configure::write('Config.PageSize', 10);

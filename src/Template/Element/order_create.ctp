@@ -10,9 +10,9 @@
                 <div class="right-action text-right">
                     <div class="btn-groups">
                         <?php if (empty($id)): ?>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo !empty($id) ? $id : 0; ?>)">
+<!--                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo !empty($id) ? $id : 0; ?>)">
                             <i class="fa fa-floppy-o"></i> Khởi tạo
-                        </button>
+                        </button>-->
                         <?php endif; ?>
                         <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(<?php echo isset($order['status']) ? $order['status'] : '1'; ?>, <?php echo !empty($id) ? $id : 0; ?>)"><i
                                 class="fa fa-check"></i> Lưu
@@ -229,9 +229,9 @@
                 <div class="col-md-12">
                     <div class="btn-groups pull-right" style="margin-bottom: 50px;">
                         <?php if (empty($id)): ?>
-                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo !empty($id) ? $id : 0; ?>)">
+<!--                        <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(0, <?php echo !empty($id) ? $id : 0; ?>)">
                             <i class="fa fa-floppy-o"></i> Khởi tạo
-                        </button>
+                        </button>-->
                         <?php endif; ?>
                         <button type="button" class="btn btn-primary"  onclick="cms_save_<?php echo !empty($type) ? $type : 'orders';?>(<?php echo isset($order['status']) ? $order['status'] : '1'; ?>, <?php echo !empty($id) ? $id : 0; ?>)"><i
                                 class="fa fa-check"></i> Lưu

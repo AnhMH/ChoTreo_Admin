@@ -34,6 +34,7 @@ class AppController extends Controller
 
     /** @var object $AppUI Session infomation of user logged. */
     public $AppUI = null;
+    public $vipType = 0;
     
     /** @var object $controller Controller name. */
     public $controller = null;
@@ -127,6 +128,7 @@ class AppController extends Controller
         $this->set('BASE_URL_FRONT', $this->BASE_URL_FRONT);
         $this->set('url', $this->request->url);
         $this->set('referer', Controller::referer());
+        $this->set('vipType', $this->vipType);
 
         // Set default layout
         $this->setLayout();
@@ -148,6 +150,7 @@ class AppController extends Controller
         }
         if (!empty($user)) {
             $this->AppUI = $user;
+            $this->vipType = !empty($user['type']) ? $user['type'] : 0;
             return true;
         }
         return false;
