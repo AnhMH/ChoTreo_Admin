@@ -6,7 +6,8 @@ $page = 1;
 $limit = Configure::read('Config.PageSize');
 $param = array(
     'page' => $page,
-    'limit' => $limit
+    'limit' => $limit,
+    'get_order_data' => 1
 );
 $result = Api::call(Configure::read('API.url_customers_list'), $param);
 $data = !empty($result['data']) ? $result['data'] : array();

@@ -187,14 +187,14 @@
 
                         <div class="col-md-8">
                             <input type="text" class="customer_birthday"  id="customer_birthday" class="txttimes form-control"
-                                   value=" <?php echo !empty($customer['birthday']) ? $customer['birthday'] : '';?>">
+                                   value="<?php echo !empty($customer['birthday']) ? $customer['birthday'] : '';?>">
                         </div>
                         <script>
                             $('.customer_birthday').datetimepicker({
                                 timepicker:false,
                                 autoclose: true,
-                                format:'Y/m/d',
-                                formatDate:'Y/m/d'
+                                format:'Y-m-d',
+                                formatDate:'Y-m-d'
                             });</script>
                     </div>
                 </div>
