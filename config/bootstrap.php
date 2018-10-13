@@ -216,7 +216,7 @@ Type::build('timestamp')
 include_once ('apiurl.php');
 
 Configure::write('default_avatar', 'avatar_default.png');
-Configure::write('Config.PageSize', 1);
+Configure::write('Config.PageSize', 10);
 Configure::write('Config.searchPageSize', array(
     10 => 10,
     20 => 20,
@@ -234,7 +234,7 @@ Configure::write('Config.orderStatus', array(
 ));
 
 if ($env == 'production') {
-    define('VERSION_DATE', date('Ymd'));
+    define('VERSION_DATE', date('YmdHis'));
     include_once ('production/bootstrap.php');
 } else {
     define('VERSION_DATE', date('YmdHis'));

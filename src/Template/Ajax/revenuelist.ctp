@@ -7,7 +7,7 @@
                 </div>
                 <div class="infobox-data">
                     <h3 class="infobox-title cgreen"
-                        style="font-size: 25px;"><?php echo $total . ' / ' . $totalQty; ?></h3>
+                        style="font-size: 25px;"><?php echo $totalOrder . ' / ' . $totalQty; ?></h3>
                     <span class="infobox-data-number text-center" style="font-size: 14px; color: #555;">Số đơn / Số lượng SP</span>
                 </div>
             </div>
@@ -52,7 +52,13 @@
         </div>
     </div>
 </div>
-<?php echo $this->element('revenue_all', array('revenue' => $revenue)); ?>
+<?php if ($type == 2): ?>
+    <?php echo $this->element('revenue_customer', array('revenue' => $revenue)); ?>
+<?php elseif ($type == 3): ?>
+    <?php echo $this->element('revenue_product', array('revenue' => $revenue)); ?>
+<?php else: ?>
+    <?php echo $this->element('revenue_all', array('revenue' => $revenue)); ?>
+<?php endif; ?>
 <div class="alert alert-info summany-info clearfix" role="alert">
     <div class="pull-right ajax-pagination">
         <?php echo $this->Paginate->render($total, $limit, 'cms_paging_revenue', $page); ?>

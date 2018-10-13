@@ -11,7 +11,7 @@
                 <span class="lbl">Theo khách hàng</span>
             </label>
             <label style="color: #307ecc;">
-                <input type="radio" name="revenue" value="6">
+                <input type="radio" name="revenue" value="3">
                 <span class="lbl">Theo hàng hóa</span>
             </label>
         </h5>

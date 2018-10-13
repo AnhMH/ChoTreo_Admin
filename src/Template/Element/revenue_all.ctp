@@ -6,7 +6,7 @@
             <th class="text-center">Ngày bán</th>
             <th class="text-center">Khách hàng</th>
             <th class="text-center">Số lượng</th>
-            <th class="text-center">Chiếc khấu</th>
+            <th class="text-center">Chiết khấu</th>
             <th class="text-center" style="background-color: #fff;">Tổng tiền</th>
             <th class="text-center"><i class="fa fa-clock-o"></i> Nợ</th>
         </tr>
