@@ -9,8 +9,10 @@
     <?php endif; ?>
     
 </optgroup>
+<?php if ($vipType == 99): ?>
 <optgroup label="------------------------">
     <option value="product_group" data-toggle="modal" data-target="#list-prd-group">Tạo mới danh
         mục
     </option>
 </optgroup>
+<?php endif; ?>
