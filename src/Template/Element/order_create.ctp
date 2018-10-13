@@ -3,7 +3,7 @@
         <div class="orders-act">
             <div class="col-md-4 col-md-offset-2">
                 <div class="left-action text-left clearfix">
-                    <h2><?php echo !empty($title) ? ucfirst($title) : 'Đơn hàng';?> &raquo; <?php echo !empty($order['code']) ? $order['code'] : ''; ?></h2>
+                    <h2><?php echo 'Đơn hàng';?> &raquo; <?php echo !empty($order['code']) ? $order['code'] : ''; ?></h2>
                 </div>
             </div>
             <div class="col-md-6">
