@@ -368,4 +368,23 @@ class AppController extends Controller
 
         return $ids;
     }
+    
+    /**
+     * Pagination data
+     * 
+     * @param array
+     * @return array
+     */
+    function dataPagination($data, $page, $limit) {
+        $result = array();
+        $offset = ($page - 1)*$limit;
+        for ($i = $offset; $i < ($offset + $limit); $i++) {
+            if (empty($data[$i])) {
+                break;
+            } else {
+                $result[] = $data[$i];
+            }
+        }
+        return $result;
+    }
 }

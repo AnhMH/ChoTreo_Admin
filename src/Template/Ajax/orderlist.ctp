@@ -7,7 +7,7 @@
         <th class="text-center">Ngày bán</th>
         <th class="text-center" style="padding: 0px;">
             <select style="text-align:center;" id="customer-id">
-                <option value="0">Khách hàng</option>
+                <option value="-1">Khách hàng</option>
                 <?php if (!empty($customers)): ?>
                 <?php foreach ($customers as $item) : ?>
                     <option <?php echo (!empty($param['customer_id']) && ($item['id'] == $param['customer_id'])) ? 'selected ' : ''; ?>

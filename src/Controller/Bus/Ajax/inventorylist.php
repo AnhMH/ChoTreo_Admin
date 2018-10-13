@@ -32,15 +32,7 @@ if (!empty($data)) {
         $totalSellPrice += $val['sell_price']*$val['qty'];
     }
 }
-$offset = ($page - 1)*$limit;
-$inventory = array();
-for ($i = $offset; $i < ($offset + $limit); $i++) {
-    if (empty($data[$i])) {
-        break;
-    } else {
-        $inventory[] = $data[$i];
-    }
-}
+$inventory = $this->dataPagination($data, $page, $limit);
 
 // Set data
 $this->set(compact(

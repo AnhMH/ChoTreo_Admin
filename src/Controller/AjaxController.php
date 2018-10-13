@@ -234,4 +234,11 @@ class AjaxController extends AppController {
     public function inventorylist($page) {
         include ('Bus/Ajax/inventorylist.php');
     }
+    
+    /**
+     * Revenue list
+     */
+    public function revenuelist($page) {
+        include ('Bus/Ajax/revenuelist.php');
+    }
 }

@@ -31,6 +31,7 @@ Configure::write('API.url_cates_detail', 'cates/detail');
 Configure::write('API.url_cates_delete', 'cates/delete');
 
 Configure::write('API.url_customers_list', 'customers/list');
+Configure::write('API.url_customers_all', 'customers/all');
 Configure::write('API.url_customers_addupdate', 'customers/addupdate');
 Configure::write('API.url_customers_detail', 'customers/detail');
 Configure::write('API.url_customers_delete', 'customers/delete');
