@@ -20,6 +20,7 @@
     </script>
 </head>
 <body>
+    <?php echo $this->element('facebook_messenger'); ?>
 <header>
     <?php echo $this->element('header'); ?>
 </header>

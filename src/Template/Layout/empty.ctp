@@ -12,6 +12,7 @@
         <link href="<?php echo $BASE_URL; ?>/css/login.css?<?php echo VERSION_DATE;?>" rel="stylesheet">
     </head>
     <body>
+        <?php echo $this->element('facebook_messenger'); ?>
         <?php echo $this->Flash->render() ?>
         <?php echo $this->fetch('content'); ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
