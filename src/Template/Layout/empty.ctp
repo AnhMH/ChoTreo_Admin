@@ -7,6 +7,8 @@
         <base href="<?php echo $BASE_URL; ?>"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title><?php echo 'Phần mềm quản lý bán hàng'; ?></title>
+        
+        <?php echo $this->element('seo_tags'); ?>
 
         <!-- Bootstrap -->
         <link href="<?php echo $BASE_URL; ?>/css/login.css?<?php echo VERSION_DATE;?>" rel="stylesheet">

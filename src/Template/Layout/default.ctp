@@ -7,6 +7,7 @@
         <base href="<?php echo $BASE_URL; ?>"/>
         <link rel="shortcut icon" href="<?php echo $BASE_URL; ?>/favicon.ico"/>
         <title><?php echo isset($seo['title']) ? $seo['title'] : 'Phần mềm quản lý bán hàng'; ?></title>
+        <?php echo $this->element('seo_tags'); ?>
         <link href="<?php echo $BASE_URL; ?>/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo $BASE_URL; ?>/css/bootstrap-datepicker.css" rel="stylesheet">
         <link href="<?php echo $BASE_URL; ?>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
