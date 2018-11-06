@@ -26,6 +26,17 @@
                 <label class="" for="facebook">Facebook</label>
                 <input type="text" name="facebook" value="<?php echo !empty($AppUI['facebook']) ? $AppUI['facebook'] : ''; ?>" class="form-control" id="facebook">
             </div>
+            <div class="form-group text">
+                <label class="" for="url">Tên cửa hàng</label>
+                <input type="text" name="url" value="<?php echo !empty($AppUI['url']) ? $AppUI['url'] : ''; ?>" class="form-control" id="url" required="">
+            </div>
+            <div class="form-group text">
+                <label>Hình đại diện</label>
+                <?php if (!empty($AppUI['avatar'])): ?>
+                <img src="<?php echo $AppUI['avatar'];?>" alt="" width="100px" class="img-responsive"/>
+                <?php endif; ?>
+                <input type="file" name="avatar" class="form-control" id="avatar">
+            </div>
             <div class="form-group button-group">
                 <div class="form-inline">
                     <input type="submit" value="Lưu" class="btn btn-success">
