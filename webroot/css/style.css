@@ -1074,6 +1074,6 @@ button, input, optgroup, select, textarea {
 section#pos div.main-content {
     padding-left: 0;
 }
-textarea.ckeditor {
+textarea.ckeditor, .textarea textarea {
     width: 100%;
 }
