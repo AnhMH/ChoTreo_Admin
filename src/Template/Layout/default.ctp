@@ -49,6 +49,6 @@
     <script src="<?php echo $BASE_URL; ?>/js/bootstrap-datepicker.min.js"></script>
     <script src="<?php echo $BASE_URL; ?>/js/bootstrap-datepicker.vi.min.js"></script>
     <script src="<?php echo $BASE_URL; ?>/js/ckeditor.js"></script>
-    <script src="<?php echo $BASE_URL; ?>/js/editor.js"></script>
+    <script src="<?php echo $BASE_URL; ?>/js/editor.js?<?php echo VERSION_DATE;?>"></script>
     <script src="<?php echo $BASE_URL; ?>/js/ajax.js?<?php echo VERSION_DATE;?>"></script>
 </html>

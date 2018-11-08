@@ -1565,7 +1565,8 @@ function cms_add_product(type) {
     var $sell_price = cms_decode_currency_format($('#prd_sell_price').val());
     var $group_id = $('#prd_group_id').val();
     var $manufacture_id = $('#prd_manufacture_id').val();
-    var $description = CKEDITOR.instances['ckeditor'].getData();
+    var $description = $('#prd_description').val();
+    var $detail = CKEDITOR.instances['prd_detail'].getData();
     var $display_wb = cms_get_valCheckbox('display_website', 'id');
     var $new = cms_get_valCheckbox('prd_new', 'id');
     var $hot = cms_get_valCheckbox('prd_hot', 'id');
@@ -1586,6 +1587,7 @@ function cms_add_product(type) {
             'cate_id': $group_id,
             'manufacture_id': $manufacture_id,
             'description': $description,
+            'detail': $detail,
             'is_display_web': $display_wb,
             'is_new': $new,
             'is_hot': $hot,
@@ -1632,7 +1634,6 @@ function cms_update_product($id) {
     var file_data = $('#photo').prop('files')[0];
     if (typeof file_data != 'undefined') {
         var type = file_data.type;
-        console.log(type);
         var match = ["image/gif", "image/png", "image/jpg", "image/jpeg"];
         if (match.indexOf(type) < 0) {
             $('.ajax-error-ct').html('Hình ảnh không đúng định dạng.').parent().fadeIn().delay(ajaxAlertDelay).fadeOut('slow');
@@ -1652,7 +1653,9 @@ function cms_update_product($id) {
     var $sell_price = cms_decode_currency_format($('#prd_sell_price').val());
     var $group_id = $('#prd_group_id').val();
     var $manufacture_id = $('#prd_manufacture_id').val();
-    var $description = CKEDITOR.instances['ckeditor'].getData();
+    var $description = $('#prd_description').val();
+     
+    var $detail = CKEDITOR.instances['prd_detail'].getData();
     var $display_wb = cms_get_valCheckbox('display_website', 'id');
     var $new = cms_get_valCheckbox('prd_new', 'id');
     var $hot = cms_get_valCheckbox('prd_hot', 'id');
@@ -1670,6 +1673,7 @@ function cms_update_product($id) {
         'cate_id': $group_id,
         'manufacture_id': $manufacture_id,
         'description': $description,
+        'detail': $detail,
         'is_display_web': $display_wb,
         'is_new': $new,
         'is_hot': $hot,

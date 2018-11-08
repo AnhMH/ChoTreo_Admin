@@ -183,13 +183,27 @@
                         <!--                            ">Hình ảnh và mô tả sản phẩm.</small>-->
                         <!--                        </div>-->
                         <div class="col-md-12 padd-20">
-                            <h4 style="margin-top: 0;">Mô tả
+                            <h4 style="margin-top: 0;">Giới thiệu
+                                <small style="font-style: italic;">(Đoạn giới thiệu ngắn về sản phẩm)
+                                </small>
+                            </h4>
+                            <textarea name="prd_description" id="prd_description" rows="5" class="ckeditor"><?php echo !empty($product['description']) ? $product['description'] : ''; ?></textarea>
+<!--                            <script type="text/javascript">
+                                CKEDITOR.replace( 'prd_description' );
+                                CKEDITOR.add            
+                            </script>-->
+                        </div>
+                        <div class="col-md-12 padd-20">
+                            <h4 style="margin-top: 0;">Mô tả chi tiết
                                 <small style="font-style: italic;">(Nhập thông tin mô tả chi tiết hơn để khách
                                     hàng hiểu hàng hoá của bạn)
                                 </small>
                             </h4>
-                            <!--                                    <textarea id="ck_editor" id="prd_description"></textarea>-->
-                            <div id="ckeditor"><?php echo!empty($product['description']) ? $product['description'] : ''; ?></div>
+                            <textarea name="prd_detail" id="prd_detail" class="ckeditor"><?php echo !empty($product['detail']) ? $product['detail'] : ''; ?></textarea>
+                            <script type="text/javascript">
+                                CKEDITOR.replace( 'prd_detail' );
+                                CKEDITOR.add            
+                            </script>
                         </div>
                         <div class="col-md-3 padd-20">
                             <h4>Thông tin cho web</h4>
@@ -243,7 +257,4 @@
         </div>
     </div>
 </div>
-<script>
-    initSample();
-</script>
 
