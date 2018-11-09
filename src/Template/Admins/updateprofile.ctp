@@ -39,7 +39,7 @@
             </div>
             <div class="form-group textarea">
                 <label class="" for="description">Mô tả cửa hàng</label>
-                <textarea rows="7" name="description" id="description"><?php !empty($AppUI['description']) ? $AppUI['description'] : '';?></textarea>
+                <textarea rows="7" name="description" id="description"><?php echo !empty($AppUI['description']) ? $AppUI['description'] : '';?></textarea>
             </div>
             <div class="form-group button-group">
                 <div class="form-inline">

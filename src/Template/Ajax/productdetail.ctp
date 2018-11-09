@@ -150,12 +150,21 @@
                         <div class="col-md-12 padd-20">
                             <div class="row">
                                 <div class="col-md-12 padd-20">
-                                    <h4 style="margin-top: 0;">Mô tả
+                                    <h4 style="margin-top: 0;">Giới thiệu sản phẩm
+                                        <small style="font-style: italic;">(Đoạn giới thiệu ngắn về sản phẩm)
+                                        </small>
+                                    </h4>
+                                    <div id="ckeditor"><?php echo $product['description']; ?></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 padd-20">
+                                    <h4 style="margin-top: 0;">Mô tả chi tiết
                                         <small style="font-style: italic;">(Nhập thông tin mô tả chi tiết hơn để khách
                                             hàng hiểu hàng hoá của bạn)
                                         </small>
                                     </h4>
-                                    <div id="ckeditor"><?php echo $product['description']; ?></div>
+                                    <div id="ckeditor"><?php echo $product['detail']; ?></div>
                                 </div>
                             </div>
                         </div>

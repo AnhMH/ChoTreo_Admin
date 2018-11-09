@@ -212,18 +212,22 @@
                         </div>
                         <div class="col-md-9">
                             <div class="row">
+                                
                                 <div class="checkbox-group" style="margin-top: 20px;">
                                     <label class="checkbox"><input type="checkbox" class="checkbox"
                                                                    id="display_website" value="1" <?php echo!empty($product['is_display_web']) ? 'checked' : ''; ?>><span></span> Hiện thị ra
                                         website</label>
                                     <br>
+                                    <?php if ($vipType == 99): ?>
                                     <label class="checkbox"><input type="checkbox" id="prd_highlight"
                                                                    class="checkbox" value="1" <?php echo!empty($product['is_feature']) ? 'checked' : ''; ?>><span></span> Nổi bật</label>&nbsp;&nbsp;<label
                                         class="checkbox"><input type="checkbox" class="checkbox"
                                                             id="prd_new" value="1" <?php echo!empty($product['is_new']) ? 'checked' : ''; ?>><span></span> Hàng mới</label>&nbsp;&nbsp;&nbsp;<label
                                         class="checkbox"><input type="checkbox" class="checkbox"
                                                             id="prd_hot" value="1" <?php echo!empty($product['is_hot']) ? 'checked' : ''; ?>><span></span> Đang bán chạy</label>
+                                    <?php endif; ?>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label>Seo description</label>
                                     <input type="text" id="seo_description" value="<?php echo !empty($product['seo_description']) ? $product['seo_description'] : ''; ?>"
