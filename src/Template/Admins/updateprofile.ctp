@@ -1,3 +1,4 @@
+<?php echo $this->Flash->render() ?>
 <div class="row">
     <div class="col-sm-12 col-md-8">      
         <form method="post" enctype="multipart/form-data" accept-charset="utf-8" role="form" autocomplete="off" novalidate="novalidate" action="/admins/updateprofile">

@@ -104,7 +104,7 @@ if ($this->request->is('post')) {
             $this->Flash->success(__('MESSAGE_SAVE_OK'));
             return $this->redirect("{$this->BASE_URL}/{$this->controller}/updateprofile");
         } else {
-            return $this->Flash->error(__('MESSAGE_SAVE_NG'));
+            return $this->Flash->error(Api::parseErrorMess(Api::getError()));
         }
     }
 }
