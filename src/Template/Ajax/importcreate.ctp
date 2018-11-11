@@ -5,4 +5,4 @@ $data = array(
     'id' => !empty($id) ? $id : '',
     'title' => 'phiếu nhập'
 );
-echo $this->element('order_create', $data);
+echo $this->element('import_create', $data);

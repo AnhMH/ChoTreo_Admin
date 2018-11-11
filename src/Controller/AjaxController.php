@@ -248,4 +248,12 @@ class AjaxController extends AppController {
     public function profitlist($page) {
         include ('Bus/Ajax/profitlist.php');
     }
+    
+    /**
+     * Change order status
+     */
+    public function changeorderstatus() {
+        $this->autoRender = false;
+        include ('Bus/Ajax/changeorderstatus.php');
+    }
 }

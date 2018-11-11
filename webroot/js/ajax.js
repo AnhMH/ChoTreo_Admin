@@ -3165,3 +3165,24 @@ function cms_del_icon_click(obs, attach) {
         $(this).html('').parent().find(attach).val('').removeAttr('data-id').prop('readonly', false);
     })
 }
+
+function cms_change_status_order($orderId , $status) {
+    $data = {
+        'order_id': $orderId, 
+        'status': $status
+    };
+    var $param = {
+        'type': 'POST',
+        'url': BASE_URL + '/ajax/changeorderstatus',
+        'data': $data,
+        'callback': function (data) {
+            if (data > 0) {
+                    cms_detail_order($orderId);
+                    $('.ajax-success-ct').html('Cập nhật trạng thái thành công.').parent().fadeIn().delay(1000).fadeOut('slow');
+                } else if (data == '0') {
+                    $('.ajax-error-ct').html('Oops! This system is errors! please try again.').parent().fadeIn().delay(1000).fadeOut('slow');
+                }
+        }
+    };
+    cms_adapter_ajax($param);
+}

@@ -231,6 +231,10 @@ Configure::write('Config.searchStatus', array(
 Configure::write('Config.orderStatus', array(
     0 => 'Khởi tạo',
     1 => 'Hoàn thành',
+    2 => 'Đang xác nhận',
+    3 => 'Xác nhận',
+    4 => 'Đang giao',
+    5 => 'Hủy'
 ));
 
 if ($env == 'production') {

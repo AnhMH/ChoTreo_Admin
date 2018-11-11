@@ -1,3 +1,6 @@
+<?php 
+$orderType = !empty($order['status']) ? $order['status'] : 0;
+?>
 <div class="breadcrumbs-fixed panel-action">
     <div class="row">
         <div class="orders-act">
@@ -11,13 +14,33 @@
             <div class="col-md-6">
                 <div class="right-action text-right">
                     <div class="btn-groups">
-                            <button type="button" class="btn btn-primary" onclick="cms_vsell_order();"><i
-                                    class="fa fa-plus"></i> Tạo đơn hàng mới
+                            <?php if ($orderType < 2 && $orderType != 1): ?>
+                            <button type="button" class="btn btn-primary" onclick="cms_change_status_order(<?php echo $order['id'];?>,2)">
+                                <i class="fa fa-check"></i> Đang xác nhận
                             </button>
-                            <button type="button" class="btn btn-primary"
-                                    onclick="cms_vsell_order(<?php echo $order['id']; ?>)"><i
-                                    class="fa fa-pencil-square-o"></i> Sửa
+                            <?php endif; ?>
+                            <?php if ($orderType < 3 && $orderType != 1): ?>
+                            <button type="button" class="btn btn-primary" onclick="cms_change_status_order(<?php echo $order['id'];?>,3)">
+                                <i class="fa fa-check"></i> Xác nhận
                             </button>
+                            <?php endif; ?>
+                            <?php if ($orderType < 4 && $orderType != 1): ?>
+                            <button type="button" class="btn btn-primary" onclick="cms_change_status_order(<?php echo $order['id'];?>,4)">
+                                <i class="fa fa-taxi"></i> Đang giao
+                            </button>
+                            <?php endif; ?>
+                            <?php if ($orderType != 1): ?>
+                            <button type="button" class="btn btn-primary" onclick="cms_change_status_order(<?php echo $order['id'];?>,1)">
+                                <i class="fa fa-check-square-o"></i> Hoàn thành
+                            </button>
+                            <?php endif; ?>
+                            <?php if ($orderType < 5): ?>
+                            <button type="button" class="btn btn-primary" onclick="cms_change_status_order(<?php echo $order['id'];?>,5)">
+                                <i class="fa fa-check-circle-o"></i> Hủy
+                            </button>
+                            <?php endif; ?>
+<!--                            <button type="button" class="btn btn-primary" onclick="cms_print_order(1,134)"><i class="fa fa-print"></i> In đơn hàng
+                            </button>-->
                             <button type="button" class="btn btn-default"
                                     onclick="cms_javascript_redirect( cms_javascrip_fullURL() )"><i
                                     class="fa fa-arrow-left"></i> Quay lại

@@ -23,6 +23,7 @@ Configure::write('API.url_orders_addupdate', 'orders/addupdate');
 Configure::write('API.url_orders_detail', 'orders/detail');
 Configure::write('API.url_orders_delete', 'orders/delete');
 Configure::write('API.url_orders_disable', 'orders/disable');
+Configure::write('API.url_orders_changestatus', 'orders/changestatus');
 
 Configure::write('API.url_cates_list', 'cates/list');
 Configure::write('API.url_cates_all', 'cates/all');
