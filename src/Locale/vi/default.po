@@ -36,3 +36,36 @@ msgstr "Vui lòng nhập email"
 
 msgid "MESSAGE_PASSWORD_EMPTY"
 msgstr "Vui lòng nhập mật khẩu"
+
+msgid "LABEL_SLIDER_LIST"
+msgstr "Danh sách slider"
+
+msgid "LABEL_IMAGE"
+msgstr "Hình ảnh"
+
+msgid "LABEL_LINK"
+msgstr "Đường dẫn"
+
+msgid "LABEL_TEXT"
+msgstr "Nội dung"
+
+msgid "LABEL_STT"
+msgstr "STT"
+
+msgid "LABEL_EDIT"
+msgstr "Sửa"
+
+msgid "LABEL_SEARCH"
+msgstr "Tìm kiếm"
+
+msgid "LABEL_ADD_NEW"
+msgstr "Thêm mới"
+
+msgid "LABEL_DELETE"
+msgstr "Xóa"
+
+msgid "LABEL_INFO"
+msgstr "Thông báo"
+
+msgid "LABEL_CLOSE"
+msgstr "Đóng"

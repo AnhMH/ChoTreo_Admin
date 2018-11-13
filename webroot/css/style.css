@@ -1083,3 +1083,11 @@ textarea.ckeditor, .textarea textarea {
 .table-content input[type="checkbox"] {
     display: block;
 }
+.button-group {
+    margin-top: 20px;
+}
+.button-group .form-group {
+    width: auto;
+    display: inline-block;
+    margin-right: 20px;
+}

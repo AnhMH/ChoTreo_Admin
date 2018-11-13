@@ -48,7 +48,7 @@ $data = !empty($result['data']) ? $result['data'] : array();
 $this->SimpleTable
         ->setDataset($data)
         ->addColumn(array(
-            'id' => 'item',
+//            'id' => '',
             'name' => 'items[]',
             'type' => 'checkbox',
             'value' => '{id}',

@@ -43,6 +43,9 @@ class SimpleTableHelper extends AppHelper {
             $attr[] = "type=\"{$item['type']}\"";
         }
         foreach ($item as $k => $v) {
+            if ($item['name'] == 'items[]' && $k = 'id') {
+                continue;
+            }
             if (is_string($v) && in_array($k, array('id', 'name', 'value', 'class', 'style', 'width', 'height', 'rows', 'cols'))) {
                 $attr[] = "{$k}=\"{$v}\"";
             }
@@ -99,7 +102,7 @@ class SimpleTableHelper extends AppHelper {
         $html .= "<table id=\"{$id}\" class=\"table table-bordered table-striped\" cellspacing=\"0\" width=\"100%\">";
         foreach ($columns as $i => $item) {
             if (empty($item['id'])) {
-                $columns[$i]['id'] = 'ID' . time() . rand(1000, 9999);
+                $columns[$i]['id'] = 'ID' . time() . rand(0, 9999);
             }
             if (empty($item['type'])) {
                 $columns[$i]['type'] = '';

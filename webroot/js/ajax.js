@@ -119,7 +119,7 @@ $(document).ready(function () {
     
     // Buttons action
     $(".btn-disable").click(function () {
-        var msgConfirm = $(this).attr('data-confirm');
+        var msgConfirm = 'aa';//$(this).attr('data-confirm');
         return disableEnableMulti('disable', true, msgConfirm);
     });
     $(".btn-enable").click(function () {
@@ -3259,4 +3259,13 @@ function checkAll(strItemName, value) {
             }
         }
     }
+}
+
+/**
+ * Show alert using bootstrap modal
+ * @param {string} message
+ */
+function showAlertModal(message) {
+    $('#modal_alert_body').html(message);
+    $('#modal_alert').modal('show');
 }
