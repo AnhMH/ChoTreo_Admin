@@ -111,3 +111,12 @@ msgstr "Limit"
 
 msgid "LABEL_NAME"
 msgstr "Tên"
+
+msgid "LABEL_SELL_PRICE"
+msgstr "Giá bán"
+
+msgid "LABEL_PRODUCT_LIST"
+msgstr "Danh sách sản phẩm"
+
+msgid "LABEL_IS_DISPLAY_WEB"
+msgstr "dw"

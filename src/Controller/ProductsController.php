@@ -14,4 +14,11 @@ class ProductsController extends AppController {
     public function index() {
         include ('Bus/Products/index.php');
     }
+    
+    /**
+     * List products
+     */
+    public function masterlist() {
+        include ('Bus/Products/masterlist.php');
+    }
 }
