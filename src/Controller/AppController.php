@@ -109,6 +109,7 @@ class AppController extends Controller
         $this->action = strtolower($this->request->params['action']);
         $this->current_url = Router::url($this->here, true);
         $this->BASE_URL = Router::fullBaseUrl() . USE_SUB_DIRECTORY;
+        $this->BASE_URL_FRONT = Configure::read('Config.frontUrl');
         
     }
 
@@ -444,6 +445,19 @@ class AppController extends Controller
                         } else {
                             $this->Flash->success(__('MESSAGE_UPDATE_SUCCESSFULLY'));
                         }
+                    case 'confirm':
+                    case 'reject':
+                        $param['is_confirm'] = ($data['action'] == 'confirm' ? 1 : 0);
+                        $apiUrl = "{$controller}/confirm";
+                        Api::call($apiUrl, $param);
+                        $error = Api::getError();
+                        if ($error) {
+                            AppLog::warning("Can not update", __METHOD__, $data);
+                            $this->Flash->error(html_entity_decode(Api::parseErrorMess($error)));
+                        } else {
+                            $this->Flash->success(__('MESSAGE_UPDATE_SUCCESSFULLY'));
+                        }
+                        break;
                     default:
                         break;
                 }

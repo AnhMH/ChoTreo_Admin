@@ -126,6 +126,14 @@ $(document).ready(function () {
         var msgConfirm = 'Bạn có muốn xóa dữ liệu này?';//$(this).attr('data-confirm');
         return disableEnableMulti('delete', true, msgConfirm);
     });
+    $(".btn-confirm").click(function () {
+        var msgConfirm = 'Bạn có muốn xác nhận dữ liệu này?';//$(this).attr('data-confirm');
+        return disableEnableMulti('confirm', true, msgConfirm);
+    });
+    $(".btn-reject").click(function () {
+        var msgConfirm = 'Bạn có muốn từ chối dữ liệu này?';//$(this).attr('data-confirm');
+        return disableEnableMulti('reject', true, msgConfirm);
+    });
     $(".btn-enable").click(function () {
         return disableEnableMulti('enable');
     });
