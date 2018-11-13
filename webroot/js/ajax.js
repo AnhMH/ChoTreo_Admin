@@ -116,6 +116,19 @@ $(document).ready(function () {
     cms_search_box_customer();
     cms_search_box_sup();
     cms_change_store();
+    
+    // Buttons action
+    $(".btn-disable").click(function () {
+        var msgConfirm = $(this).attr('data-confirm');
+        return disableEnableMulti('disable', true, msgConfirm);
+    });
+    $(".btn-enable").click(function () {
+        return disableEnableMulti('enable');
+    });
+    $(".btn-addnew").click(function () {
+        location.href = baseUrl + '/' + controller + '/update';
+        return false;
+    });
 });
 
 $(document).on('ready ajaxComplete', function () {
@@ -3185,4 +3198,65 @@ function cms_change_status_order($orderId , $status) {
         }
     };
     cms_adapter_ajax($param);
+}
+
+/**
+ * Update multi (enable/disable)
+ * @param {string} type
+ * @returns {Boolean}
+ */
+function disableEnableMulti(type, mess, messConfirm) {
+    if (typeof mess == 'undefined') {
+        mess = false;
+    }
+    if (typeof messConfirm == 'undefined') {
+        messConfirm = 'Bạn có chắc chắn muốn xóa dữ liệu này?';
+    }
+    var items = getItemsChecked('items[]', ',');
+    if (items == '') {
+        showAlertModal('Vui lòng chọn dữ liệu');
+        return false;
+    }
+    if (mess && !confirm(messConfirm)) {
+        return false;
+    }
+    
+    $("#action").val(type);
+    return true;
+}
+
+/**
+ * Get list item checked
+ * @param {type} strItemName
+ * @param {type} sep
+ * @returns {String}
+ */
+function getItemsChecked(strItemName, sep) {
+    var x = document.getElementsByName(strItemName);
+    var p = "";
+    for (var i = 0; i < x.length; i++) {
+        if (x[i].checked) {
+            p += x[i].value + sep;
+        }
+    }
+    var result = (p != '' ? p.substr(0, p.length - 1) : '');
+    return result;
+}
+
+/**
+ * Check all item in data search result
+ */
+function checkAll(strItemName, value) {
+    var x = document.getElementsByName(strItemName);
+    for (var i = 0; i < x.length; i++) {
+        if (value == 1 && !x[i].disabled) {
+            if (!x[i].checked) {
+                x[i].checked = 'checked';
+            }
+        } else {
+            if (x[i].checked) {
+                x[i].checked = '';
+            }
+        }
+    }
 }

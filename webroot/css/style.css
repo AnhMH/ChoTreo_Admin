@@ -1077,3 +1077,9 @@ section#pos div.main-content {
 textarea.ckeditor, .textarea textarea {
     width: 100%;
 }
+.table-content a {
+    color: #337ab7;
+}
+.table-content input[type="checkbox"] {
+    display: block;
+}

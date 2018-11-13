@@ -27,6 +27,9 @@
 
 
         <!--<li id="config"><a href="<?php echo $BASE_URL; ?>/config"><i class="fa fa-cogs"></i>Thiết lập</a></li>-->
+        <?php if ($vipType == 99): ?>
+        <?php echo $this->element('master_sidebar'); ?>
+        <?php endif;?>
 
     </ul>
 </div>

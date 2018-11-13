@@ -47,3 +47,5 @@ Configure::write('API.url_products_autocomplete', 'products/autocomplete');
 Configure::write('API.url_products_getinventory', 'products/getinventory');
 
 Configure::write('API.url_settings_gettopdata', 'settings/gettopdata');
+
+Configure::write('API.url_sliders_list', 'sliders/list');

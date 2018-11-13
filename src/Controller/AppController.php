@@ -68,6 +68,11 @@ class AppController extends Controller
             'httpOnly' => true
         ]);
         $this->loadComponent('Common');
+//        $this->loadComponent('Breadcrumb');
+        $this->loadComponent('SimpleForm');
+        $this->loadComponent('SearchForm');
+        $this->loadComponent('UpdateForm');
+        $this->loadComponent('SimpleTable');
         $this->loadComponent('Auth', array(
             'loginRedirect' => false,
             'logoutRedirect' => false,
@@ -115,6 +120,18 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event) {
         parent::beforeRender($event);
+        
+        // Form / Table
+        if (!empty($this->SearchForm->get())) {
+            $this->set('searchForm', $this->SearchForm->get());
+        }
+        if (!empty($this->UpdateForm->get())) {
+            $this->set('updateForm', $this->UpdateForm->get());
+        }
+        if (!empty($this->SimpleTable->get())) {
+            $this->set('table', $this->SimpleTable->get());
+        }
+        
         // Auth
         if (isset($this->Auth) && $this->isAuthorized()) {
             $this->set('AppUI', $this->Auth->user());
@@ -386,5 +403,45 @@ class AppController extends Controller
             }
         }
         return $result;
+    }
+    
+    /**
+     * Commont function creater message notification.
+     * 
+     * @return object
+     */
+    public function doGeneralAction() {
+        $data = $this->request->data;
+        if ($this->request->is('post')) {
+            if (!empty($data['actionId'])) {
+                $data['items'] = array($data['actionId']);
+            }
+            if (!empty($data['action']) && !empty($data['items'])) {
+                $action = $data['action'];
+                $param['id'] = implode(',', $data['items']);
+                switch ($action) {
+                    case 'enable':
+                    case 'disable':
+                        $param['disable'] = ($data['action'] == 'disable' ? 1 : 0);
+                        $controller = $this->request->params['controller'];
+                        $apiUrl = "{$controller}/disable";
+                        if ($controller == 'Checkinoutlogs') {
+                            $apiUrl = "orders/carddisable";
+                        }
+                        Api::call($apiUrl, $param);
+                        $error = Api::getError();
+                        if ($error) {
+                            AppLog::warning("Can not update", __METHOD__, $data);
+                            $this->Flash->error(html_entity_decode(Api::parseErrorMess($error)));
+                        } else {
+                            $this->Flash->success(__('MESSAGE_UPDATE_SUCCESSFULLY'));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                return $this->redirect($this->request->here(false));
+            }
+        }
     }
 }

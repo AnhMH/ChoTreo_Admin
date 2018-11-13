@@ -96,7 +96,7 @@ class SimpleTableHelper extends AppHelper {
             'enctype' => 'multipart/form-data',
             'id' => 'dataForm',
         ));
-        $html .= "<table id=\"{$id}\" class=\"{$class}\" cellspacing=\"0\" width=\"100%\">";
+        $html .= "<table id=\"{$id}\" class=\"table table-bordered table-striped\" cellspacing=\"0\" width=\"100%\">";
         foreach ($columns as $i => $item) {
             if (empty($item['id'])) {
                 $columns[$i]['id'] = 'ID' . time() . rand(1000, 9999);
