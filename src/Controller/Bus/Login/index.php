@@ -25,6 +25,7 @@ if ($this->request->is('post')) {
         if (empty($data['register_password'])) {
             $check = false;
         }
+        $check = false;
         if ($check) {
             $user = Api::call(Configure::read('API.url_admins_register'), $data);
             $error = Api::getError();
