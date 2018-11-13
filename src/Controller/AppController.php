@@ -419,15 +419,12 @@ class AppController extends Controller
             if (!empty($data['action']) && !empty($data['items'])) {
                 $action = $data['action'];
                 $param['id'] = implode(',', $data['items']);
+                $controller = $this->request->getParam('controller');
                 switch ($action) {
                     case 'enable':
                     case 'disable':
                         $param['disable'] = ($data['action'] == 'disable' ? 1 : 0);
-                        $controller = $this->request->params['controller'];
                         $apiUrl = "{$controller}/disable";
-                        if ($controller == 'Checkinoutlogs') {
-                            $apiUrl = "orders/carddisable";
-                        }
                         Api::call($apiUrl, $param);
                         $error = Api::getError();
                         if ($error) {
@@ -437,6 +434,16 @@ class AppController extends Controller
                             $this->Flash->success(__('MESSAGE_UPDATE_SUCCESSFULLY'));
                         }
                         break;
+                    case 'delete':
+                        $apiUrl = "{$controller}/delete";
+                        Api::call($apiUrl, $param);
+                        $error = Api::getError();
+                        if ($error) {
+                            AppLog::warning("Can not update", __METHOD__, $data);
+                            $this->Flash->error(html_entity_decode(Api::parseErrorMess($error)));
+                        } else {
+                            $this->Flash->success(__('MESSAGE_UPDATE_SUCCESSFULLY'));
+                        }
                     default:
                         break;
                 }

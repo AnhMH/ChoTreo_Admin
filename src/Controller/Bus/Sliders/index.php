@@ -85,6 +85,11 @@ $this->SimpleTable
             'empty' => ''
         ))
         ->addColumn(array(
+            'id' => 'disable',
+            'title' => __('LABEL_DISABLE'),
+            'empty' => '0'
+        ))
+        ->addColumn(array(
             'type' => 'link',
             'title' => __('LABEL_EDIT'),
             'href' => $this->BASE_URL . '/' . $this->controller . '/update/{id}',
@@ -99,6 +104,16 @@ $this->SimpleTable
         ->addButton(array(
             'type' => 'submit',
             'value' => __('LABEL_DELETE'),
+            'class' => 'btn btn-danger btn-delete',
+        ))
+        ->addButton(array(
+            'type' => 'submit',
+            'value' => __('LABEL_ENABLE'),
+            'class' => 'btn btn-success btn-enable',
+        ))
+        ->addButton(array(
+            'type' => 'submit',
+            'value' => __('LABEL_DISABLE'),
             'class' => 'btn btn-danger btn-disable',
         ));
 

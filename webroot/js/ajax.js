@@ -119,14 +119,18 @@ $(document).ready(function () {
     
     // Buttons action
     $(".btn-disable").click(function () {
-        var msgConfirm = 'aa';//$(this).attr('data-confirm');
+        var msgConfirm = 'Bạn có muốn disable dữ liệu này?';//$(this).attr('data-confirm');
         return disableEnableMulti('disable', true, msgConfirm);
+    });
+    $(".btn-delete").click(function () {
+        var msgConfirm = 'Bạn có muốn xóa dữ liệu này?';//$(this).attr('data-confirm');
+        return disableEnableMulti('delete', true, msgConfirm);
     });
     $(".btn-enable").click(function () {
         return disableEnableMulti('enable');
     });
     $(".btn-addnew").click(function () {
-        location.href = baseUrl + '/' + controller + '/update';
+        location.href = BASE_URL + '/' + controller + '/update';
         return false;
     });
 });
@@ -3268,4 +3272,16 @@ function checkAll(strItemName, value) {
 function showAlertModal(message) {
     $('#modal_alert_body').html(message);
     $('#modal_alert').modal('show');
+}
+
+/**
+ * Go back
+ */
+function back(redirect) {
+    if (typeof redirect !== 'undefined' && redirect !== '') {
+        location.href = redirect;
+    } else {
+        location.href = '/' + controller;
+    }
+    return false;
 }

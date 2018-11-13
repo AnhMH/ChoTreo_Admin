@@ -49,3 +49,5 @@ Configure::write('API.url_products_getinventory', 'products/getinventory');
 Configure::write('API.url_settings_gettopdata', 'settings/gettopdata');
 
 Configure::write('API.url_sliders_list', 'sliders/list');
+Configure::write('API.url_sliders_detail', 'sliders/detail');
+Configure::write('API.url_sliders_addupdate', 'sliders/addupdate');

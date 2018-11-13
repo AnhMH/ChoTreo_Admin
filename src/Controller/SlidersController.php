@@ -16,10 +16,18 @@ class SlidersController extends AppController {
         parent::beforeFilter($event);
         
     }
+    
     /**
-     * List products
+     * List sliders
      */
     public function index() {
         include ('Bus/Sliders/index.php');
+    }
+    
+    /**
+     * Update sliders
+     */
+    public function update($id = '') {
+        include ('Bus/Sliders/update.php');
     }
 }
