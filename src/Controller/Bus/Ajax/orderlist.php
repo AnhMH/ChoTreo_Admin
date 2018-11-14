@@ -24,6 +24,7 @@ $orders = $data;
 $totalPrice = 0;
 $totalLack = 0;
 $orderStatus = Configure::read('Config.orderStatus');
+$orderStatusLabel = Configure::read('Config.orderStatusLabel');
 //if (!empty($orders)) {
 //    foreach ($orders as $val) {
 //        $totalPrice += $val['total_price'];
@@ -40,5 +41,6 @@ $this->set(compact(
     'customers',
     'totalPrice',
     'totalLack',
-    'orderStatus'
+    'orderStatus',
+    'orderStatusLabel'
 ));

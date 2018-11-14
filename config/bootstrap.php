@@ -236,6 +236,14 @@ Configure::write('Config.orderStatus', array(
     4 => 'Đang giao',
     5 => 'Hủy'
 ));
+Configure::write('Config.orderStatusLabel', array(
+    0 => 'default',
+    1 => 'success',
+    2 => 'warning',
+    3 => 'primary',
+    4 => 'info',
+    5 => 'danger'
+));
 
 if ($env == 'production') {
     define('VERSION_DATE', date('YmdHis'));
