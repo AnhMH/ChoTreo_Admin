@@ -29,6 +29,9 @@ button {
     cursor: pointer;
     width: 100%;
 }
+.btnRegister {
+    background-color: #fe9126;
+}
 
 button:hover {
     opacity: 0.8;
@@ -92,4 +95,8 @@ h2 {
     color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
+}
+label {
+    margin-top: 10px;
+    display: block;
 }
