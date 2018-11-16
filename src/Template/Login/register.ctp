@@ -16,7 +16,7 @@
                 <input type="password" placeholder="Xác nhận mật khẩu ..." name="re_password" required>
                 
                 <label>
-                    Bằng việc đăng kí, bạn đã đồng ý với ChoTreo.Com về&nbsp;<a href="#">Điều khoản dịch vụ</a>&nbsp;&amp;&nbsp;<a href='#'>Chính sách bảo mật</a>
+                    Bằng việc đăng kí, bạn đã đồng ý với ChoTreo.Com về&nbsp;<a href="<?php echo $BASE_URL_FRONT;?>/dieu-khoan-dich-vu" target="_blank">Điều khoản dịch vụ</a>&nbsp;&amp;&nbsp;<a href='<?php echo $BASE_URL_FRONT;?>/chinh-sach-bao-mat' target="_blank">Chính sách bảo mật</a>
                 </label>
 
                 <button type="submit" class="btnRegister">Đăng ký</button>
