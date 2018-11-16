@@ -26,6 +26,13 @@ class LoginController extends AppController {
     }
     
     /**
+     * Register page
+     */
+    public function register() {
+        include ('Bus/Login/register.php');
+    }
+    
+    /**
      * Logout action
      */
     public function logout() {

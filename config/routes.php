@@ -63,6 +63,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/logout', ['controller' => 'Login', 'action' => 'logout']);
     $routes->connect('/import', ['controller' => 'Orders', 'action' => 'import']);
     $routes->connect('/account', ['controller' => 'Admins', 'action' => 'updateprofile']);
+    $routes->connect('/dang-ky', ['controller' => 'Login', 'action' => 'register']);
     /**
      * Connect catchall routes for all controllers.
      *
