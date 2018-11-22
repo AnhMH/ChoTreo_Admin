@@ -6,72 +6,7 @@ use Cake\Core\Configure;
 
 // Create breadcrumb
 $pageTitle = __('LABEL_UPDATE_PROFILE');
-$this->Breadcrumb->setTitle($pageTitle)
-    ->add(array(
-        'name' => $pageTitle,
-    ));
 
-$data = $this->AppUI;
-// Create Update form 
-$form = new UpdateAdminForm();
-$this->UpdateForm->reset()
-    ->setModel($form)
-    ->setData($data)
-    ->setAttribute('autocomplete', 'off')
-    ->addElement(array(
-        'id' => 'id',
-        'type' => 'hidden',
-        'label' => __('id'),
-    ))
-    ->addElement(array(
-        'id' => 'account',
-        'label' => __('LABEL_ACCOUNT'),
-//        'required' => true,
-        'readonly' => true
-    ))
-    ->addElement(array(
-        'id' => 'name',
-        'label' => __('LABEL_NAME'),
-//        'required' => true,
-        'readonly' => true
-    ))
-    ->addElement(array(
-        'id' => 'email',
-        'label' => __('LABEL_EMAIL'),
-    ))
-    ->addElement(array(
-        'id' => 'tel',
-        'label' => __('LABEL_TEL'),
-    ))
-    ->addElement(array(
-        'id' => 'address',
-        'label' => __('LABEL_ADDRESS'),
-    ))
-    ->addElement(array(
-        'id' => 'avatar',
-        'label' => __('LABEL_AVATAR'),
-        'image' => true,
-        'type' => 'file'
-    ))
-    ->addElement(array(
-        'id' => 'website',
-        'label' => __('LABEL_WEBSITE'),
-    ))
-    ->addElement(array(
-        'id' => 'facebook',
-        'label' => __('LABEL_FACEBOOK'),
-    ))
-    ->addElement(array(
-        'type' => 'submit',
-        'value' => __('LABEL_SAVE'),
-        'class' => 'btn btn-primary',
-    ))
-    ->addElement(array(
-        'type' => 'submit',
-        'value' => __('LABEL_CANCEL'),
-        'class' => 'btn',
-        'onclick' => "return back();"
-    ));
 // Valdate and update
 if ($this->request->is('post')) {
     // Trim data
