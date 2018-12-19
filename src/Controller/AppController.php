@@ -458,6 +458,19 @@ class AppController extends Controller
                             $this->Flash->success(__('MESSAGE_UPDATE_SUCCESSFULLY'));
                         }
                         break;
+                    case 'trust':
+                    case 'nottrust':
+                        $param['is_trust'] = ($data['action'] == 'trust' ? 1 : 0);
+                        $apiUrl = "{$controller}/trust";
+                        Api::call($apiUrl, $param);
+                        $error = Api::getError();
+                        if ($error) {
+                            AppLog::warning("Can not update", __METHOD__, $data);
+                            $this->Flash->error(html_entity_decode(Api::parseErrorMess($error)));
+                        } else {
+                            $this->Flash->success(__('MESSAGE_UPDATE_SUCCESSFULLY'));
+                        }
+                        break;
                     default:
                         break;
                 }

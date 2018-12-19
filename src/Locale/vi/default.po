@@ -120,3 +120,9 @@ msgstr "Danh sách sản phẩm"
 
 msgid "LABEL_IS_DISPLAY_WEB"
 msgstr "dw"
+
+msgid "LABEL_IS_TRUST"
+msgstr "Trust"
+
+msgid "LABEL_NOT_TRUST"
+msgstr "Not Trust"

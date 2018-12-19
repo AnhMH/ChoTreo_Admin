@@ -134,6 +134,14 @@ $(document).ready(function () {
         var msgConfirm = 'Bạn có muốn từ chối dữ liệu này?';//$(this).attr('data-confirm');
         return disableEnableMulti('reject', true, msgConfirm);
     });
+    $(".btn-trust").click(function () {
+        var msgConfirm = 'Bạn có muốn xác nhận dữ liệu này?';//$(this).attr('data-confirm');
+        return disableEnableMulti('trust', true, msgConfirm);
+    });
+    $(".btn-nottrust").click(function () {
+        var msgConfirm = 'Bạn có muốn từ chối dữ liệu này?';//$(this).attr('data-confirm');
+        return disableEnableMulti('nottrust', true, msgConfirm);
+    });
     $(".btn-enable").click(function () {
         return disableEnableMulti('enable');
     });

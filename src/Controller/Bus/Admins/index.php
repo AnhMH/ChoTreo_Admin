@@ -112,6 +112,11 @@ $this->SimpleTable
             'empty' => '0'
         ))
         ->addColumn(array(
+            'id' => 'is_trust',
+            'title' => __('LABEL_IS_TRUST'),
+            'empty' => '0'
+        ))
+        ->addColumn(array(
             'id' => 'disable',
             'title' => __('LABEL_DISABLE'),
             'empty' => '0'
@@ -152,6 +157,16 @@ $this->SimpleTable
             'type' => 'submit',
             'value' => __('LABEL_REJECT'),
             'class' => 'btn btn-danger btn-reject',
+        ))
+        ->addButton(array(
+            'type' => 'submit',
+            'value' => __('LABEL_IS_TRUST'),
+            'class' => 'btn btn-success btn-trust',
+        ))
+        ->addButton(array(
+            'type' => 'submit',
+            'value' => __('LABEL_NOT_TRUST'),
+            'class' => 'btn btn-danger btn-nottrust',
         ));
 
 $this->set('pageTitle', $pageTitle);
