@@ -17,6 +17,7 @@ if ($this->request->is('post')) {
         }
     }
     // Validation
+    $form = new UpdateAdminForm;
     if ($form->validate($data)) {
         if (!empty($data['avatar']['name'])) {
             $filetype = $data['avatar']['type'];

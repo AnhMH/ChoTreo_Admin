@@ -126,3 +126,6 @@ msgstr "Trust"
 
 msgid "LABEL_NOT_TRUST"
 msgstr "Not Trust"
+
+msgid "MESSAGE_SAVE_OK"
+msgstr "Lưu dữ liệu thành công"

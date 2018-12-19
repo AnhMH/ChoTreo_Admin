@@ -39,7 +39,7 @@
                 <input type="text" name="facebook" value="<?php echo!empty($AppUI['facebook']) ? $AppUI['facebook'] : ''; ?>" class="form-control" id="facebook">
             </div>
             <div class="form-group text">
-                <label class="" for="url">Tên cửa hàng</label>
+                <label class="" for="url">URL cửa hàng</label>
                 <input type="text" name="url" value="<?php echo!empty($AppUI['url']) ? $AppUI['url'] : ''; ?>" class="form-control" id="url" required="">
             </div>
             <div class="form-group text">
@@ -52,6 +52,10 @@
             <div class="form-group textarea">
                 <label class="" for="description">Mô tả cửa hàng</label>
                 <textarea rows="7" name="description" id="description"><?php echo!empty($AppUI['description']) ? $AppUI['description'] : ''; ?></textarea>
+            </div>
+            <div class="form-group text">
+                <label class="" for="new_pass">Mật khẩu mới</label>
+                <input type="text" name="new_pass" value="" class="form-control" id="new_pass">
             </div>
             <div class="form-group button-group">
                 <div class="form-inline">
