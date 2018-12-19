@@ -1,5 +1,6 @@
 <?php
 $totalOrder = !empty($data['order']['total_order']) ? number_format($data['order']['total_order']) : 0;
+$totalOrderFromFront = !empty($data['order']['total_from_front']) ? number_format($data['order']['total_from_front']) : 0;
 $sumTotalPrice = !empty($data['order']['sum_total_price']) ? number_format($data['order']['sum_total_price']) : 0;
 $sumTotalQty = !empty($data['order']['sum_total_qty']) ? number_format($data['order']['sum_total_qty']) : 0;
 $totalProduct = !empty($data['total_product']['cnt_id']) ? number_format($data['total_product']['cnt_id']) : 0;
@@ -66,7 +67,7 @@ $totalInventoryProductEmpty = !empty($data['total_inventory2']['cnt_id']) ? numb
                 </div>
                 <div class="infobox-data">
                     <h3 class="infobox-title">Đơn hàng web</h3>
-                    <span class="infobox-data-number">0</span>
+                    <span class="infobox-data-number"><?php echo $totalOrderFromFront; ?></span>
                 </div>
             </div>
         </div>

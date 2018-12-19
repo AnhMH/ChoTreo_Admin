@@ -10,6 +10,13 @@
         </div>
     </div>
 </div>
+<div class="row" style='margin-top: 10px;'>
+    <div class="col-sm-12">
+        <div class="alert alert-info">
+            <strong>Trạng thái:</strong> <?php echo !empty($AppUI['is_confirm']) ? 'Tài khoản đã được phê duyệt' : 'Tài khoản đang chờ phê duyệt';?>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-sm-12 col-md-8">      
         <form method="post" enctype="multipart/form-data" accept-charset="utf-8" role="form" autocomplete="off" novalidate="novalidate" action="/admins/updateprofile">
